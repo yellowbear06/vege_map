@@ -105,3 +105,6 @@
 
 ■画面遷移図　　
 https://www.figma.com/file/tQgkhDA6YN7GDQob6WHdwI/Vege-project?node-id=0%3A1&t=8wuFjpcySiTfWjVU-1
+
+■ER図
+![Vegee](https://user-images.githubusercontent.com/101486233/235415674-7fea8b27-5e75-4a61-bd73-45350a7a10f0.png)
