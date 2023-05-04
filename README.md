@@ -47,7 +47,7 @@
       ・名前、住んでいる都道府県、食の選択オフ法  
       ・ユーザー登録からログイン画面に遷移する  
 
-  ◯未登録ユーザ／登録ユーザー共通  
+  ◯未登録ユーザー／登録ユーザー共通  
     ・ユーザーがマップページを閲覧することができる  
     ・マップで選択したレストランの詳細を見ることができる  
       ・詳細ページからレストランのインスタやホームページのURLに遷移できる  
@@ -104,3 +104,65 @@
 
 ■画面遷移図　　
 https://www.figma.com/file/tQgkhDA6YN7GDQob6WHdwI/Vege-project?node-id=0%3A1&t=8wuFjpcySiTfWjVU-1
+
+■ER図  
+・Userテーブル（ユーザー情報の保存）  
+  name：氏名、必須  
+  email：メールアドレス、必須  
+  profile：プロフィール、任意  
+  address：住んでいる県、任意  
+  age：年齢、任意  
+  vegetarian_type_id：外部キー、自身のベジタリアンの種類、任意  
+  avatar：アバター写真、任意  
+  roles：権限（一般or管理者）デフォルトは一般ユーザー、必須  
+  crypted_password, salt：パスワード、必須  
+
+・User_listsテーブル（ユーザーリストの名前と概要を保存）  
+  user_id：外部キー、必須  
+  list_name：リスト名、必須  
+  description：リストの概要、任意  
+
+・List_places（User_listの中身）  
+  user_list_id：外部キー、必須  
+  place_id：外部キー、必須  
+
+・Placeテーブル（レストランやお店の情報を保存）  
+  name：店舗名、必須  
+  address；住所、必須  
+  description：店の概要、任意  
+  map_url：マップ情報の保存（Google mapのURL）、必須  
+
+・Place_of_vegetarian_type（ベジタリアンの複数選択ができるように店舗とベジタリアン種類の中間テーブル）  
+  place_id：外部キー、店舗id、必須  
+  vegetarian_type_id：外部キー、ベジタリアン種類の保存、必須  
+
+・Vegetarian_type（ベジタリアン,ヴィーガンなどの種類を保存）  
+  name：ベジタリアン種類の名前、必須  
+
+・Category（料理のカテゴリー名の保存）  
+  name：カテゴリー名、必須  
+
+・Category_place  
+  category_id：外部キー、必須  
+  place_id：外部キー、必須  
+
+・Events（イベントの概要の保存）  
+  user_id：外部キー、登録するユーザーID、必須  
+  place_id：外部キー、イベントの場所ID、任意  
+  name：イベントの名前、必須  
+  event_url：イベントのURL、任意  
+  description：イベントの概要、任意  
+  starting_at：イベントの開始時間、必須  
+  ending_at：イベントの終了時間、必須  
+  status：イベントの公開／非公開／下書きなどの状態、必須  
+
+・Saved_events  
+  user_id：外部キー、必須  
+  events_id：外部キー、必須  
+
+・Links_of_places（リンクの保存）  
+  place_id：外部キー、必須  
+  url：レストラン詳細のURL、必須  
+  link_category：Webサイト、Instagram、Facebook、その他などリンクの種類が選択できる、必須  
+
+  ![Vegee](https://user-images.githubusercontent.com/101486233/236091257-d031b7bc-659d-42a3-9602-23002ec325a8.png)

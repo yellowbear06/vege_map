@@ -1,0 +1,39 @@
+.top-title{
+  width: 337px;
+  height: 349px;
+  left: 10%;
+  top: 40%;
+
+  font-family: 'Mukta Vaani';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 78px;
+  line-height: 90px;
+}
+
+.top-map{
+  width: 837px;
+  height: 615px;
+}
+
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: #335157;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
