@@ -168,4 +168,4 @@ https://www.figma.com/file/tQgkhDA6YN7GDQob6WHdwI/Vege-project?node-id=0%3A1&t=8
   url：レストラン詳細のURL、必須  
   link_category：Webサイト、Instagram、Facebook、その他などリンクの種類が選択できる、必須  
 
-  ![Vegee](https://user-images.githubusercontent.com/101486233/236091257-d031b7bc-659d-42a3-9602-23002ec325a8.png)
+![Vegee](https://user-images.githubusercontent.com/101486233/236111575-0969da6e-0fee-469b-b6c5-1ad73c736848.png)
