@@ -1,0 +1,43 @@
+ja:
+  defaults:
+    login: 'ログイン'
+    logout: 'ログアウト'
+    register: '登録'
+    show: '詳細'
+    edit: '編集'
+    delete: '削除'
+    update: '更新'
+    cancel: 'キャンセル'
+    message:
+      require_login: 'ログインしてください'
+      created: '%{item}を作成しました'
+      not_created: '%{item}を作成できませんでした'
+      updated: '%{item}を更新しました'
+      not_updated: '%{item}を更新できませんでした'
+      deleted: '%{item}を削除しました'
+      delete_confirm: '削除しますか？'
+      not_authorized: '権限がありません'
+  time:
+    formats:
+      default: '%Y/%m/%d %H:%M'
+  sessions:
+    new:
+      title: 'ログイン'
+      password_forget: 'パスワードをお忘れの方はこちら'
+    create:
+      success: 'ログインしました'
+      fail: 'ログインに失敗しました'
+    destroy:
+      logout: 'ログアウトしました'
+  users:
+    new:
+      title: 'ユーザー登録'
+    create:
+      success: 'ユーザー登録が完了しました'
+      fail: 'ユーザー登録に失敗しました'
+
+      
+
+
+
+
