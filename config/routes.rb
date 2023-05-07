@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
   get 'contact', to: 'contact#index'
   resources :users, only: %i[new create]
+  resources :mypage, only: %i[index]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
