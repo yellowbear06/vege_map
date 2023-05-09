@@ -5,6 +5,7 @@ ja:
     logout: 'ログアウト'
     register: '登録'
     contact: 'お問い合わせ'
+    mypage: 'マイページ'
     show: '詳細'
     edit: '編集'
     delete: '削除'
