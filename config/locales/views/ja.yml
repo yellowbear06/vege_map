@@ -5,6 +5,7 @@ ja:
     logout: 'ログアウト'
     register: '登録'
     contact: 'お問い合わせ'
+    mypage: 'マイページ'
     show: '詳細'
     edit: '編集'
     delete: '削除'
@@ -37,8 +38,10 @@ ja:
     create:
       success: 'ユーザー登録が完了しました'
       fail: 'ユーザー登録に失敗しました'
+  mypage:
+    index:
+      title: 'マイページ'
 
-      
 
 
 
