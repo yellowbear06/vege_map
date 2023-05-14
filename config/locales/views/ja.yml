@@ -39,8 +39,10 @@ ja:
       success: 'ユーザー登録が完了しました'
       fail: 'ユーザー登録に失敗しました'
   mypage:
-    index:
+    show:
       title: 'マイページ'
+    edit:
+      title: 'ユーザー情報編集'
 
 
 
