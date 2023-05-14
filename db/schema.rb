@@ -10,7 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_07_142806) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_14_055529) do
+  create_table "list_places", force: :cascade do |t|
+    t.integer "user_list_id", null: false
+    t.integer "place_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["place_id"], name: "index_list_places_on_place_id"
+    t.index ["user_list_id"], name: "index_list_places_on_user_list_id"
+  end
+
+  create_table "places", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "address"
+    t.text "description"
+    t.string "map_url", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["map_url"], name: "index_places_on_map_url", unique: true
+  end
+
+  create_table "user_lists", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "list_name", null: false
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_lists_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
@@ -33,5 +61,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_07_142806) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "list_places", "places"
+  add_foreign_key "list_places", "user_lists"
+  add_foreign_key "user_lists", "users"
   add_foreign_key "users", "vegetarian_types"
 end
