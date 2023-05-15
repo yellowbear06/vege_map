@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'contact', to: 'contact#index'
   resources :users, only: %i[new create]
   resources :mypage, only: %i[show edit update]
+  resources :user_lists, only: %i[new create edit update]
   # Defines the root path route ("/")
   # root "articles#index"
 end

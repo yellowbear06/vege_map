@@ -1,0 +1,9 @@
+<%= form_with(model: user_list, url: user_lists_path) do |f| %>
+  <%= f.label :list_name %>
+  <%= f.text_field :list_name, class: 'form-control mb-3' %>
+
+  <%= f.label :description %>
+  <%= f.text_area :description, class: 'form-control mb-3' %>
+
+  <%= f.submit 'Create List' %>
+<% end %>
