@@ -9,7 +9,7 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body data-controller="navbar">
     <% if logged_in? %>
       <%= render 'shared/header' %>
     <% else %>
