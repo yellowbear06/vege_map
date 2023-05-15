@@ -21,6 +21,6 @@
         <td><%= current_user.profile %></td>
       </tr>
     </table>
-    <%= link_to t('defaults.edit'), edit_mypage_path(current_user) %>
+    <%= link_to t('defaults.edit'), edit_mypage_path(current_user), class: 'btn btn-primary' %>
   </div>
   <%= render 'mylists/index' %>
