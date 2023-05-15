@@ -1,4 +1,42 @@
+<div data-turbolinks="false">
 <div class="container">
-  <h1 class="top-title">Vegee<br>For<br>Everyone</h1>
-  <iframe class="top-map" src="https://www.google.com/maps/d/embed?mid=1MQ-aOqj_z7LIJNQ48nQIz8XQXsd8ED0&ehbc=2E312F" width="640" height="480"></iframe>
+  <!-- <h1 class="top-title">Vegee<br>For<br>Everyone</h1> -->
+  <div id="map" style="width:620px; height:400px"></div>
+
+  <form>
+    <p>
+    <input type="button" value="東京" onclick="setTokyo()">
+    <input type="button" value="大阪" onclick="setOsaka()">
+    </p>
+  </form>
+
+  <script>
+    var map;
+    var tokyo;
+    var osaka;
+
+    function initMap() {
+      tokyo = new google.maps.LatLng(35.689614,139.691585);
+      osaka = new google.maps.LatLng(34.686272,135.519649);
+
+      var opts = {
+        zoom: 15,
+        center: tokyo
+      };
+
+      map = new google.maps.Map(document.getElementById("map"), opts);
+    }
+
+    function setTokyo() {
+      map.setCenter(tokyo);
+    }
+
+    function setOsaka() {
+      map.setCenter(osaka);
+    }
+
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initMap" async defer></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+</div>
 </div>
