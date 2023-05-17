@@ -1,0 +1,19 @@
+<div class="container">
+  <%= form_with(model: @place, url: top_index_path, local: true) do |f| %>
+    <div class="field my-3">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field my-3">
+      <%= f.label :map_url %>
+      <%= f.text_area :map_url %>
+    </div>
+    <div class="field my-3">
+      <%= f.label :address %>
+      <%= f.text_field :address %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div>
