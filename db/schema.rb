@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_17_130741) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_18_145243) do
   create_table "list_places", force: :cascade do |t|
     t.integer "user_list_id", null: false
     t.integer "place_id", null: false
@@ -30,6 +30,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_17_130741) do
     t.string "latitude"
     t.string "longitude"
     t.index ["map_url"], name: "index_places_on_map_url", unique: true
+  end
+
+  create_table "samples", force: :cascade do |t|
+    t.string "name"
+    t.string "english_name"
+    t.string "address"
+    t.string "phone_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "user_lists", force: :cascade do |t|
