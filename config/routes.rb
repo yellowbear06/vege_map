@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root 'top#index'
   get 'top', to: 'top#index'
-  resources :top, only: %i[new create show]
+  resources :top, only: %i[new edit update show] do
+    collection do
+      get :fetch_place_ids
+    end
+  end
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'

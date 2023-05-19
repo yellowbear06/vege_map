@@ -8,5 +8,5 @@
 require "csv"
 
 CSV.foreach('db/mymap.csv') do |row|
-  Sample.create(:name => row[0], :english_name => row[1], :address => row[2], :phone_number => row[4])
+  Sample.create(:name => row[0], :english_name => row[1], :address => row[2], :english_address => row[3], :phone_number => row[4])
 end

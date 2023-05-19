@@ -1,5 +1,11 @@
 <div id="gmap" style="height:400px;width:600px"></div> <!-- 地図を表示する領域 -->
-<p id="address"><%= @place.name %></p> <!-- 住所 -->
+  <%= @name %>
+  <p id="address"><%= @address %></p>
+  <%= @phone %>
+  <%= @website %>
+  <%= @opening_hours %>
+  <%= @photos %>
+  <%= @categories %>
   
 <script>
 function initMap() {
@@ -23,8 +29,15 @@ function initMap() {
         });
        
        //情報ウィンドウの生成
+       var contentString =
+        '<div>' +
+        '<h2>' + place.name + '</h2>' +
+        '<p>営業時間: ' + place.hours + '</p>' +
+        '<img src="' + place.photoUrl + '" alt="写真">' +
+        '</div>';
+
         var infoWindow = new google.maps.InfoWindow({
-          content: 'Hello!',
+          content: contentString,
           pixelOffset: new google.maps.Size(0, 5)
         });
  

@@ -3,25 +3,36 @@ class TopController < ApplicationController
   require 'json'
   skip_before_action :require_login
 
-  def index; end
-
-  def new
-    @place = Place.new
+  def index
+    @places = Sample.all
   end
 
-  def create
-    @place = Place.new
+  def fetch_place_ids
+    @places = Sample.all
+    @places.each do |place|
+      place.fetch_place_id
+    end
+
+    redirect_to fetch_place_ids_top_index
+  end
+
+  def edit
+    @place = Sample.find(params[:id])
+  end
+
+  def update
+    @place = Sample.find(params[:id])
     place_name = params[:place][:name]
     api_key = ENV['GOOGLE_MAPS_API_KEY']
 
-    url = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=#{URI.encode_www_form_component(place_name)}&inputtype=textquery&key=#{api_key}"
+    url = "https://maps.googleapis.com/maps/api/place/details/json?place_id=#{google_place_id}&key=#{api_key}"
     uri = URI(url)
     response = Net::HTTP.get(uri)
     result = JSON.parse(response)
 
     if result['status'] == 'OK' && !result['candidates'].empty?
       place_data = result['candidates'].first
-      @place.map_url = place_data['place_id']
+      @place.google_place_id = place_data['place_id']
       @place.name = place_name
       @place.save
       redirect_to :new, status: :created
@@ -31,8 +42,8 @@ class TopController < ApplicationController
   end
 
   def show
-    @place = Place.find(params[:id])
-    place_id = @place.map_url
+    @place = Sample.find(params[:id])
+    place_id = @place.google_place_id
     api_key = ENV['GOOGLE_MAPS_API_KEY']
 
     url = "https://maps.googleapis.com/maps/api/place/details/json?place_id=#{place_id}&key=#{api_key}"
@@ -42,9 +53,13 @@ class TopController < ApplicationController
 
     if result['status'] == 'OK'
       place_data = result['result']
-      render json: place_data, status: :ok
-    else
-      render json: { error: 'Failed to retrieve place details' }, status: :unprocessable_entity
+      @name = place_data['name']
+      @address = place_data['formatted_address']
+      @phone = place_data['formatted_phone_number']
+      @website = place_data['website']
+      @opening_hours = place_data['opening_hours']['weekday_text']
+      @photos = place_data['photos']
+      @categories = place_data['types']
     end
   end
 
