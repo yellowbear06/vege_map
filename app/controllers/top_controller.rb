@@ -4,24 +4,21 @@ class TopController < ApplicationController
   skip_before_action :require_login
 
   def index
-    @places = Sample.all
+    @places = Place.all
   end
 
   def fetch_place_ids
-    @places = Sample.all
-    @places.each do |place|
-      place.fetch_place_id
-    end
-
+    @place = Place.find(42)
+    @place.fetch_place_id
     redirect_to fetch_place_ids_top_index
   end
 
   def edit
-    @place = Sample.find(params[:id])
+    @place = Place.find(params[:id])
   end
 
   def update
-    @place = Sample.find(params[:id])
+    @place = Place.find(params[:id])
     place_name = params[:place][:name]
     api_key = ENV['GOOGLE_MAPS_API_KEY']
 
@@ -42,7 +39,7 @@ class TopController < ApplicationController
   end
 
   def show
-    @place = Sample.find(params[:id])
+    @place = Place.find(params[:id])
     place_id = @place.google_place_id
     api_key = ENV['GOOGLE_MAPS_API_KEY']
 
@@ -50,16 +47,16 @@ class TopController < ApplicationController
     uri = URI(url)
     response = Net::HTTP.get(uri)
     result = JSON.parse(response)
-
     if result['status'] == 'OK'
-      place_data = result['result']
-      @name = place_data['name']
-      @address = place_data['formatted_address']
-      @phone = place_data['formatted_phone_number']
-      @website = place_data['website']
-      @opening_hours = place_data['opening_hours']['weekday_text']
-      @photos = place_data['photos']
-      @categories = place_data['types']
+      @place_data = result['result']
+      gon.place = @place_data
+      @name = @place_data['name']
+      @address = @place_data['formatted_address']
+      @phone = @place_data['formatted_phone_number']
+      @website = @place_data['website']
+      @opening_hours = @place_data['opening_hours']['weekday_text']
+      @photos = @place_data['photos']
+      @categories = @place_data['types']
     end
   end
 

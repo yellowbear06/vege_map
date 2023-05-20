@@ -7,6 +7,6 @@
 #   Character.create(name: "Luke", movie: movies.first)
 require "csv"
 
-CSV.foreach('db/mymap.csv') do |row|
-  Sample.create(:name => row[0], :english_name => row[1], :address => row[2], :english_address => row[3], :phone_number => row[4])
+CSV.foreach('db/vege_restaurant.csv') do |row|
+  Place.create(:name => row[1], :eng_name => row[0], :address => row[3], :eng_address => row[2], :phone => row[4], :category => row[7])
 end

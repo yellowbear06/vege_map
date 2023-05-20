@@ -1,11 +1,15 @@
 <div id="gmap" style="height:400px;width:600px"></div> <!-- 地図を表示する領域 -->
   <%= @name %>
   <p id="address"><%= @address %></p>
-  <%= @phone %>
+  <%= @place_data %>
   <%= @website %>
   <%= @opening_hours %>
-  <%= @photos %>
   <%= @categories %>
+  <%= @place.name %>
+  <% @photos.each do |photo| %>
+    <% photo_url = "https://maps.googleapis.com/maps/api/place/photo?photoreference=#{photo['photo_reference']}&sensor=false&maxheight=400&maxwidth=600&key=#{ENV['GOOGLE_MAPS_API_KEY']}" %>
+    <%= image_tag(photo_url) %>
+  <% end %>
   
 <script>
 function initMap() {
@@ -29,12 +33,17 @@ function initMap() {
         });
        
        //情報ウィンドウの生成
-       var contentString =
-        '<div>' +
-        '<h2>' + place.name + '</h2>' +
-        '<p>営業時間: ' + place.hours + '</p>' +
-        '<img src="' + place.photoUrl + '" alt="写真">' +
-        '</div>';
+        var contentString =
+          '<div>' +
+            '<h2>' + gon.place['name'] + '</h2>' +
+            '<p>営業時間: ' + gon.place['opening_hours']['weekday_text'] + '</p>' +
+            '<p>住所 ' + results[0]['formatted_address'] + '</p>' +
+            '<p>評価 ' + gon.place['rating'] + '</p>' +
+            '<p>カテゴリー ' + gon.place['types'][0] + '</p>' +
+            '<p>電話番号 ' + gon.place['formatted_phone_number'] + '</p>' +
+            '<a href="' + gon.place['website'] + '">' + gon.place['website'] + '</a>'
+            '<img src="' + gon.place['icon'] + '" alt="icon">' +
+          '</div>';
 
         var infoWindow = new google.maps.InfoWindow({
           content: contentString,
