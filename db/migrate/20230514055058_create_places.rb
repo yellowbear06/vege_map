@@ -2,12 +2,15 @@ class CreatePlaces < ActiveRecord::Migration[7.0]
   def change
     create_table :places do |t|
       t.string :name, null:false
+      t.string :eng_name
       t.string :address
-      t.text :description
-      t.string :map_url, null:false
+      t.string :eng_address
+      t.string :phone
+      t.string :google_place_id
+      t.string :category
 
       t.timestamps
     end
-    add_index :places, :map_url, unique: true
+    add_index :places, :google_place_id, unique: true
   end
 end

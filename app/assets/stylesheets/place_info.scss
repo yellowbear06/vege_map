@@ -1,0 +1,75 @@
+
+.performance-facts {
+  border: 1px solid black;
+  float: left;
+  width: 400px;
+  padding: 0.5rem;
+  table {
+    border-collapse: collapse;
+  }
+}
+
+.place-info-title {
+  font-weight: bold;
+  font-size: 2rem;
+  margin: 0 0 0.25rem 0;
+}
+
+.place-info-header {
+  border-bottom: 10px solid black;
+  padding: 0 0 0.25rem 0;
+  margin: 0 0 0.5rem 0;
+}
+.place-info-table {
+  width: 100%;
+  thead tr {
+    th,
+    td {
+      width: 50%;
+      border: 0;
+    }
+  }
+  th,
+  td {
+    font-weight: normal;
+    text-align: left;
+    padding: 0.25rem 0;
+    border-top: 1px solid black;
+    white-space: nowrap;
+  }
+  td {
+    &:last-child {
+      text-align: right;
+    }
+  }
+  .blank-cell {
+    width: 1rem;
+    border-top: 0;
+  }
+  .thick-row {
+    th,
+    td {
+      border-top-width: 5px;
+    }
+  }
+}
+
+tfoot tr{
+  td{
+    text-align: left;
+  }
+}
+
+.small-info {
+  font-size: 0.7rem;
+}
+
+.text-center {
+  text-align: center;
+}
+.thick-end {
+  border-bottom: 10px solid black;
+}
+.thin-end {
+  border-bottom: 1px solid black;
+}

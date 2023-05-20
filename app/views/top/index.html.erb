@@ -1,4 +1,7 @@
 <div class="container">
-  <h1 class="top-title">Vegee<br>For<br>Everyone</h1>
-  <iframe class="top-map" src="https://www.google.com/maps/d/embed?mid=1MQ-aOqj_z7LIJNQ48nQIz8XQXsd8ED0&ehbc=2E312F" width="640" height="480"></iframe>
+  <h1 class="top-title">Vegee  For  Everyone</h1>
+  <div id="map" style="width:620px; height:400px"></div>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&libraries=places&callback=initMap" async defer></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 </div>

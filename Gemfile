@@ -54,6 +54,10 @@ gem "mini_magick"
 gem 'rails-i18n'
 gem 'jquery-rails'
 gem 'sorcery'
+gem 'geocoder'
+gem 'dotenv-rails'
+gem 'http'
+gem "gon"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
