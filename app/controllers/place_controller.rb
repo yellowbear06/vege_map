@@ -1,4 +1,5 @@
 class PlaceController < ApplicationController
+  include PlaceHelper
   require 'net/http'
   require 'json'
   skip_before_action :require_login
@@ -38,15 +39,14 @@ class PlaceController < ApplicationController
     response = Net::HTTP.get(uri)
     result = JSON.parse(response)
     if result['status'] == 'OK'
-      @place_data = result['result']
-      gon.place = @place_data
-      @name = @place_data['name']
-      @address = @place_data['formatted_address']
-      @phone = @place_data['formatted_phone_number']
-      @website = @place_data['website']
-      @opening_hours = @place_data['opening_hours']['weekday_text']
-      @photos = @place_data['photos']
-      @categories = @place_data['types']
+      place_data = result['result']
+      gon.place = place_data
+      @phone = place_data['formatted_phone_number']
+      @website = place_data['website']
+      @photos = place_data['photos']
+      @categories = place_data['types']
+      @open_now = place_data['current_opening_hours']["open_now"] ? "営業中" : "閉店"
+      @opening_hours = format_opening_hours(place_data['opening_hours'])
     end
   end
 

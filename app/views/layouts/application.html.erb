@@ -11,12 +11,16 @@
   </head>
 
   <body data-controller="navbar">
-    <% if logged_in? %>
-      <%= render 'shared/header' %>
-    <% else %>
-      <%= render 'shared/before_login_header' %>
-    <% end %>
+    <header>
+      <% if logged_in? %>
+        <%= render 'shared/header' %>
+      <% else %>
+        <%= render 'shared/before_login_header' %>
+      <% end %>
+    </header>
     <%= render 'shared/flash_message' %>
-    <%= yield %>
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>
