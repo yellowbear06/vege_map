@@ -1,0 +1,2 @@
+class VegetarianType < ApplicationRecord
+end

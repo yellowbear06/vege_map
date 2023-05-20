@@ -22,7 +22,7 @@
       ・日本全国を対象としており、毎回地域を選択しなければならない  
       ・マイリストとして「お気に入り」しかないので、自分オリジナルのリストを作成できない   
 
-■問題点仮説
+■問題点仮説  
   ◇仮説1  
     ・SEOが弱く検索しても出て来ない  
     ・情報が古い  
@@ -47,7 +47,7 @@
       ・名前、住んでいる都道府県、食の選択情報  
       ・ユーザー登録からログイン画面に遷移する  
 
-  ◯未登録ユーザ／登録ユーザー共通  
+  ◯未登録ユーザー／登録ユーザー共通  
     ・ユーザーがマップページを閲覧することができる  
     ・マップで選択したレストランの詳細を見ることができる  
       ・詳細ページからレストランのインスタやホームページのURLに遷移できる  
@@ -106,15 +106,12 @@
 ■画面遷移図　　
 https://www.figma.com/file/tQgkhDA6YN7GDQob6WHdwI/Vege-project?node-id=0%3A1&t=8wuFjpcySiTfWjVU-1
 
-■ER図
-
 ■ER図  
 ・Userテーブル（ユーザー情報の保存）  
   name：氏名、必須  
   email：メールアドレス、必須  
   profile：プロフィール、任意  
   address：住んでいる県、任意  
-  age：年齢、任意  
   vegetarian_type_id：外部キー、自身のベジタリアンの種類、任意  
   avatar：アバター写真、任意  
   roles：権限（一般or管理者）デフォルトは一般ユーザー、必須  
@@ -142,11 +139,11 @@ https://www.figma.com/file/tQgkhDA6YN7GDQob6WHdwI/Vege-project?node-id=0%3A1&t=8
 ・Vegetarian_type（ベジタリアン,ヴィーガンなどの種類を保存）  
   name：ベジタリアン種類の名前、必須  
 
-・Category（料理のカテゴリー名の保存）  
+・Food_category（料理のカテゴリー名の保存）  
   name：カテゴリー名、必須  
 
 ・Category_place  
-  category_id：外部キー、必須  
+  food_category_id：外部キー、必須  
   place_id：外部キー、必須  
 
 ・Events（イベントの概要の保存）  
@@ -168,4 +165,4 @@ https://www.figma.com/file/tQgkhDA6YN7GDQob6WHdwI/Vege-project?node-id=0%3A1&t=8
   url：レストラン詳細のURL、必須  
   link_category：Webサイト、Instagram、Facebook、その他などリンクの種類が選択できる、必須  
 
-![Vegee](https://user-images.githubusercontent.com/101486233/236111575-0969da6e-0fee-469b-b6c5-1ad73c736848.png)
+![Vegee](https://user-images.githubusercontent.com/101486233/236822581-deb0ccbe-9b18-4f5a-bbfb-7a7c89da1092.png)

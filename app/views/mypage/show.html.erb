@@ -1,0 +1,26 @@
+<% content_for(:title, t('.title')) %>
+<div class="body-container d-flex">
+  <div class="profile">
+    <%= image_tag current_user.avatar.url, class: 'rounded-circle d-inline', size: '150x150' %>
+    <h1 class="d-inline"><%= current_user.name %></h1>
+    <table class="table">
+      <tr>
+        <th scope="row"><%= t(User.human_attribute_name(:email)) %></th>
+        <td><%= current_user.email %></td>
+      </tr>
+      <tr>
+        <th scope="row"><%= t(User.human_attribute_name(:address)) %></th>
+        <td><%= current_user.address %></td>
+      </tr>
+      <tr>
+        <th scope="row"><%= t(VegetarianType.human_attribute_name(:name)) %></th>
+        <td><%= current_user.vegetarian_type_id %></td>
+      </tr>
+      <tr>
+        <th scope="row"><%= t(User.human_attribute_name(:profile)) %></th>
+        <td><%= current_user.profile %></td>
+      </tr>
+    </table>
+    <%= link_to t('defaults.edit'), edit_mypage_path(current_user), class: 'btn btn-primary' %>
+  </div>
+  <%= render 'mylists/index' %>

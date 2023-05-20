@@ -1,0 +1,31 @@
+ja:
+  activerecord:
+    models:
+      user: 'ユーザー'
+    submit:
+      create: '登録する'
+      update: '更新する'
+      submit: '保存'
+    attributes:
+      user:
+        name: '名前'
+        email: 'メールアドレス'
+        profile: 'プロフィール'
+        address: '住んでいる県'
+        avatar: 'アバター'
+        role: '権限'
+        password: 'パスワード'
+        password_confirmation: 'パスワード確認'
+      vegetarian_type:
+        name: 'ベジタリアンの種類'
+  attributes:
+    id: 'ID'
+    created_at: '作成日時'
+    updated_at: '更新日時'
+  enums:
+    user:
+      role:
+        general: '一般'
+        admin: '管理者'
+
+
