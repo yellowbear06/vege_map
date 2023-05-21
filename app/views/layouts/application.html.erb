@@ -6,16 +6,21 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= Gon::Base.render_data %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body data-controller="navbar">
-    <% if logged_in? %>
-      <%= render 'shared/header' %>
-    <% else %>
-      <%= render 'shared/before_login_header' %>
-    <% end %>
+    <header>
+      <% if logged_in? %>
+        <%= render 'shared/header' %>
+      <% else %>
+        <%= render 'shared/before_login_header' %>
+      <% end %>
+    </header>
     <%= render 'shared/flash_message' %>
-    <%= yield %>
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>

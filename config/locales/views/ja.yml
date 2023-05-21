@@ -43,6 +43,13 @@ ja:
       title: 'マイページ'
     edit:
       title: 'ユーザー情報編集'
+  place:
+    show:
+      address: '住所'
+      opening_hours: '営業時間'
+      website: 'Website'
+      phone: 'TEL'
+
 
 
 

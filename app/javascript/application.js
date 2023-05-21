@@ -3,4 +3,5 @@ import "@hotwired/turbo-rails";
 import "@rails/ujs";
 import "./controllers";
 import "./map.js";
+import "./swiper.js";
 import "./avatar-uploader.js";
