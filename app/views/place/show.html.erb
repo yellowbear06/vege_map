@@ -71,7 +71,7 @@
     </div>
   </div>
 </div>
-<!-- <script>
+<script>
 function initMap() {
 var target = document.getElementById('gmap');  
 var address = document.getElementById('address').textContent; 
@@ -88,8 +88,7 @@ geocoder.geocode({ address: address }, function(results, status){
      //マーカーの生成
       var marker = new google.maps.Marker({
         position: results[0].geometry.location,
-        map: map,
-        animation: google.maps.Animation.DROP
+        map: map
       });
      
      //情報ウィンドウの生成
@@ -117,7 +116,7 @@ geocoder.geocode({ address: address }, function(results, status){
 }
 </script> 
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&libraries=places&callback=initMap" async defer></script>
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script> -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
 </div>
 

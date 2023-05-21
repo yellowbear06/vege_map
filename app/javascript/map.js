@@ -1,49 +1,46 @@
-document.addEventListener('turbo:load', function() {
-  let map;
-  let service;
-  let infowindow;
+  document.addEventListener('turbo:load', function() {
+    let map
+    let geocoder
+    let marker = []; // マーカーを複数表示させたいので、配列化
+    let infoWindow = []; // 吹き出しを複数表示させたいので、配列化
+    const places = gon.places; // コントローラーで定義したインスタンス変数を変数に代入
+    
+    function initMap(){
+      geocoder = new google.maps.Geocoder()
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 35.676192, lng: 139.750311},
+        zoom: 12
+        });
 
-  function initMap() {
-    const sydney = new google.maps.LatLng(-33.867, 151.195);
-    
-    infowindow = new google.maps.InfoWindow();
-    map = new google.maps.Map(document.getElementById("map"), {
-      center: sydney,
-      zoom: 15,
-    });
-    
-    const request = {
-      query: "Museum of Contemporary Art Australia",
-      fields: ["name", "geometry"],
+      for (let i = 0; i < places.length; i++) {
+        geocoder.geocode( { 'address': places[i].address}, function(results, status) {
+          if (status == 'OK') {
+              marker[i] = new google.maps.Marker({
+                  map: map,
+                  position: results[0].geometry.location
+              });
+
+              // infoWindow
+              infoWindow[i] = new google.maps.InfoWindow({
+                content: places[i].name
+              });
+              // markerがクリックされた時、
+              marker[i].addListener("click", function(){
+                  // infoWindowを表示
+                  infoWindow[i].open(map, marker[i]);
+              });
+          } else {
+              alert('Geocode was not successful for the following reason: ' + status);
+          };
+        });
+      };
     };
     
-    service = new google.maps.places.PlacesService(map);
-    service.findPlaceFromQuery(request, (results, status) => {
-      if (status === google.maps.places.PlacesServiceStatus.OK && results) {
-        for (let i = 0; i < results.length; i++) {
-          createMarker(results[i]);
-        }
-        
-        map.setCenter(results[0].geometry.location);
-      }
-      });
+    function codeAddress(){
+        // 入力を取得
+        let inputAddress = document.getElementById('address').value;
+        // geocodingしたあとmapを移動
     }
-    
-    function createMarker(place) {
-      if (!place.geometry || !place.geometry.location) return;
-      
-      const marker = new google.maps.Marker({
-        map,
-        position: place.geometry.location,
-      });
-      
-      google.maps.event.addListener(marker, "click", () => {
-        infowindow.setContent(place.name || "");
-        infowindow.open(map);
-      });
-    }
-    
-  if (infowindow !== null) {
-    window.initMap = initMap;
-  };
-});
+    initMap();
+    codeAddress();
+  });

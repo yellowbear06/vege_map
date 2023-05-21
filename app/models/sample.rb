@@ -1,3 +1,0 @@
-class Sample < ApplicationRecord
-  
-end
