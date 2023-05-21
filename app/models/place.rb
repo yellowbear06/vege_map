@@ -17,4 +17,12 @@ class Place < ApplicationRecord
       end
     end
   end
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["name", "eng_name", "address", "eng_address"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    []
+  end
 end

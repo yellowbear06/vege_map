@@ -4,6 +4,12 @@ class PlaceController < ApplicationController
   require 'json'
   skip_before_action :require_login
 
+  def index
+    @q = Place.ransack(params[:q])
+    @places = @q.result(distinct: true).order(created_at: :desc)
+    gon.places = @places
+  end
+
   def edit
     @place = Place.find(params[:id])
   end
