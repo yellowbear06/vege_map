@@ -1,6 +1,6 @@
 <div class="body-container">
   <div class="place-details">
-    <section class="place-info performance-facts">
+    <section class="place-info info-box">
       <header class="place-info-header">
         <h1 class="place-info-title"><%= @place.name %></h1>
           <p><%= @place.eng_name %></p>
@@ -41,17 +41,25 @@
           </tr>
         </tbody>
         <tfoot class="small-info">
-          <tr>
-            <td class="blank-cell"></td>
-            <th></th>
-            <td><%= t('.opening_hours') %></td>
-          </tr>
-          <% @opening_hours.each do |hour| %>
-          <tr>
-            <td class="blank-cell"></td>
-            <th><b></b></th>
-            <td><%= hour %></td>
-          </tr>
+          <% if @opening_hours %>
+            <tr>
+              <td class="blank-cell"></td>
+              <th></th>
+              <td><%= t('.opening_hours') %></td>
+            </tr>
+            <% @opening_hours.each do |hour| %>
+            <tr>
+              <td class="blank-cell"></td>
+              <th><b></b></th>
+              <td><%= hour %></td>
+            </tr>
+            <% end %>
+          <% else %>
+            <tr>
+              <td class="blank-cell"></td>
+              <th><b></b></th>
+              <td><%= @status %></td>
+            </tr>
           <% end %>
         </tfoot>
       </table>

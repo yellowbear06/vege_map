@@ -10,8 +10,7 @@
   }
 
   #map{
-    height: 500px;
-    border: 2px solid black;
+    height: 80vh;
   }
 
   .top-title{
@@ -85,4 +84,15 @@
     }
   }
 
+  .place-list-map{
+    display: flex;
+  }
+
+  .place-map{
+    flex: 2;
+  }
+
+  .place-list{
+    flex: 3;
+  }
 }

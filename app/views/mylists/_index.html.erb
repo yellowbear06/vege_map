@@ -2,7 +2,11 @@
   <ul class="nav nav-tabs" id="myTab" role="tablist">
     <% current_user.user_lists.each_with_index do |list, index| %>
       <li class="nav-item" role="presentation">
-        <button class="nav-link <%= index == 0 ? 'active' : '' %>" id="tab-<%= list.id %>" data-bs-toggle="tab" data-bs-target="#nav-<%= list.id %>" type="button" role="tab" aria-controls="nav-<%= list.id %>" aria-selected="<%= index == 0 %>"><%= list.list_name %></button>
+        <button class="nav-link <%= index == 0 ? 'active' : '' %>" 
+          id="tab-<%= list.id %>" data-bs-toggle="tab" data-bs-target="#nav-<%= list.id %>" 
+          type="button" role="tab" aria-controls="nav-<%= list.id %>" aria-selected="<%= index == 0 %>">
+          <%= list.list_name %>
+        </button>
       </li>
     <% end %>
   </ul>

@@ -3,7 +3,7 @@ class TopController < ApplicationController
 
   def index
     @q = Place.ransack(params[:q])
-    @places = @q.result(distinct: true).order(created_at: :desc)
+    @places = @q.result(distinct: true).order(created_at: :desc).limit(5)
     gon.places = @places
   end
 end

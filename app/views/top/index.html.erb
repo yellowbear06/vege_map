@@ -1,6 +1,7 @@
 <div class="container">
   <h1 class="top-title">Vegee  For  Everyone</h1>
   <%= render 'place/search_form', q: @q, url: place_index_path %>
+  <%= link_to 'レストラン一覧', place_index_path %>
   <div id='map'></div>
 </div>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&libraries=places&callback=initMap" async defer ></script>
