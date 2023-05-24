@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root 'top#index'
   get 'top', to: 'top#index'
-  resources :place, only: %i[index new edit update show] do
+  resources :place, only: %i[index new create edit update show] do
     collection do
       get :fetch_place_ids
     end
