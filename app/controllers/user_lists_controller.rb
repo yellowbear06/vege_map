@@ -1,10 +1,10 @@
 class UserListsController < ApplicationController
   def new
-    @user_list = UserList.new
+    @user_list = current_user.user_lists.new
   end
 
   def create
-    @user_list = current_user.user_lists.new(user_list_params)
+    @user_list = current_user.user_lists.build(user_list_params)
     if @user_list.save
       # リストの保存に成功した場合の処理
       flash[:success] = 'リストが作成されました。'
@@ -12,8 +12,18 @@ class UserListsController < ApplicationController
     else
       # リストの保存に失敗した場合の処理
       flash.now[:danger] = 'リストの作成に失敗しました。'
-      render :new
+      render :new, status: :unprocessable_entity
     end
+  end
+
+  def edit
+    @user_lists = current_user.user_lists.all
+  end
+
+  def destroy
+    @user_list = current_user.user_lists.find(params[:id])
+    @user_list.destroy
+    redirect_to edit_user_list_path
   end
 
   private
