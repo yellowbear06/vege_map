@@ -4,6 +4,13 @@ class PlaceController < ApplicationController
   require 'json'
   skip_before_action :require_login
 
+  def index
+    @q = Place.ransack(params[:q])
+    @places = @q.result(distinct: true).order(created_at: :desc).limit(5)
+    gon.places = @places
+    gon.api_key = ENV['GOOGLE_MAPS_API_KEY']
+  end
+
   def edit
     @place = Place.find(params[:id])
   end
@@ -45,8 +52,11 @@ class PlaceController < ApplicationController
       @website = place_data['website']
       @photos = place_data['photos']
       @categories = place_data['types']
-      @open_now = place_data['current_opening_hours']["open_now"] ? "営業中" : "閉店"
-      @opening_hours = format_opening_hours(place_data['opening_hours'])
+      @status = place_data['business_status']
+      if @status == 'OPERATIONAL'
+        @open_now = place_data['current_opening_hours']["open_now"] ? "営業中" : "閉店"
+        @opening_hours = format_opening_hours(place_data['opening_hours'])
+      end
     end
   end
 

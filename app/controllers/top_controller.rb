@@ -2,7 +2,8 @@ class TopController < ApplicationController
   skip_before_action :require_login
 
   def index
-    @places = Place.all
+    @q = Place.ransack(params[:q])
+    @places = @q.result(distinct: true).order(created_at: :desc).limit(5)
+    gon.places = @places
   end
-
 end
