@@ -1,6 +1,9 @@
 class Place < ApplicationRecord
   require 'http'
 
+  has_many :list_places
+  has_many :listing, through: :list_places, source: :user_list
+
   def fetch_place_id
     api_key = ENV['GOOGLE_MAPS_API_KEY']
     query = self.eng_name
@@ -16,6 +19,10 @@ class Place < ApplicationRecord
         self.update_columns(google_place_id: place_id)
       end
     end
+  end
+
+  def listed_by?(user_list)
+    listing.include?(user_list)
   end
 
   def self.ransackable_attributes(auth_object = nil)

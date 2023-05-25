@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'top#index'
   get 'top', to: 'top#index'
   resources :place, only: %i[index new create edit update show] do
+    resource :list_places, only: %i[create destroy]
     collection do
       get :fetch_place_ids
     end

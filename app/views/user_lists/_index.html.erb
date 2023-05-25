@@ -20,9 +20,8 @@
           <tbody>
             <% list.list_places.each do |list| %>
               <tr>
-                <td><%= link_to list.place.name, list.place.map_url %></td>
+                <td><%= link_to list.place.name, place_path(list.place) %></td>
                 <td><%= list.place.address %></td>
-                <td><%= list.place.description %></td>
               </tr>
             <% end %>
           </tbody>

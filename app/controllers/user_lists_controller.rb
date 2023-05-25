@@ -20,10 +20,21 @@ class UserListsController < ApplicationController
     @user_lists = current_user.user_lists.all
   end
 
+  def update
+    @user_list = current_user.user_lists.find(params[:id])
+    if @user_list.update(user_list_params)
+      flash[:success] = 'リストが更新されました。'
+      redirect_to edit_user_list_path(current_user.id)
+    else
+      flash.now[:danger] = 'リストの作成に失敗しました。'
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   def destroy
     @user_list = current_user.user_lists.find(params[:id])
     @user_list.destroy
-    redirect_to edit_user_list_path
+    redirect_to edit_user_list_path, status: :see_other
   end
 
   private

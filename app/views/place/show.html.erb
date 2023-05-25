@@ -4,6 +4,39 @@
       <header class="place-info-header">
         <h1 class="place-info-title"><%= @place.name %></h1>
           <p><%= @place.eng_name %></p>
+          <% current_user.user_lists.each_with_index do |list, index| %>
+            <% if @place.listed_by?(list) %>
+              <% case index %>
+                <% when 0 %>
+                  <%= link_to place_list_places_path(place_id: @place.id, user_list_id: list.id), data: { turbo_method: :delete } do %>
+                    <i class="bi bi-heart-fill"></i>
+                  <% end %>
+                <% when 1 %>
+                  <%= link_to place_list_places_path(place_id: @place.id, user_list_id: list.id), data: { turbo_method: :delete } do %>
+                    <i class="bi bi-star-fill"></i>
+                  <% end %>
+                <% else %>
+                  <%= link_to place_list_places_path(place_id: @place.id, user_list_id: list.id), data: { turbo_method: :delete } do %>
+                    <i class="bi bi-check-circle-fill"></i>
+                  <% end %>
+              <% end %>
+            <% else %>
+              <% case index %>
+                <% when 0 %>
+                  <%= link_to place_list_places_path(place_id: @place.id, user_list_id: list.id), data: { turbo_method: :post } do %>
+                    <i class="bi bi-heart"></i>
+                  <% end %>
+                <% when 1 %>
+                  <%= link_to place_list_places_path(place_id: @place.id, user_list_id: list.id), data: { turbo_method: :post } do %>
+                    <i class="bi bi-star"></i>
+                  <% end %>
+                <% else %>
+                  <%= link_to place_list_places_path(place_id: @place.id, user_list_id: list.id), data: { turbo_method: :post } do %>
+                    <i class="bi bi-check-circle"></i>
+                  <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
       </header>
       <table class="place-info-table">
         <tbody>

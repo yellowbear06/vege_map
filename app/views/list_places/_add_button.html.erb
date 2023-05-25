@@ -1,0 +1,9 @@
+<% if user_list.include?(place) %>
+  <%= link_to list_places_path(place), method: :delete do %>
+    <i class="fas fa-heart"></i>
+  <% end %>
+<% else %>
+  <%= link_to list_places_path(place), method: :post do %>
+    <i class="far fa-heart"></i>
+  <% end %>
+<% end %>
