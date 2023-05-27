@@ -1,5 +1,5 @@
-<%= turbo_stream.replace "#{list.id}" do %>
-  <%= link_to place_list_places_path(place_id: place.id, user_list_id: list.id, icon_name: icon_name), id: list.id, data: { turbo_method: :post } do %>
+<%= turbo_stream.replace "place-#{place.id}-#{list.id}" do %>
+  <%= link_to place_list_places_path(place_id: place.id, user_list_id: list.id, icon_name: icon_name), id: "place-#{place.id}-#{list.id}", data: { turbo_method: :post } do %>
     <i class="bi <%= "bi-#{icon_name}" %>"></i>
     <%= list.list_name %>
   <% end %>

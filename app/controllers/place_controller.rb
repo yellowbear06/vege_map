@@ -7,8 +7,17 @@ class PlaceController < ApplicationController
   def index
     @q = Place.ransack(params[:q])
     @places = @q.result(distinct: true).order(created_at: :desc).limit(5)
-    gon.places = @places
-    gon.api_key = ENV['GOOGLE_MAPS_API_KEY']
+    api_key = ENV['GOOGLE_MAPS_API_KEY']
+    @photos = []
+    @places.each do |place|
+      url = "https://maps.googleapis.com/maps/api/place/details/json?place_id=#{place.google_place_id}&key=#{api_key}"
+      uri = URI(url)
+      response = Net::HTTP.get(uri)
+      result = JSON.parse(response)
+      if result['status'] == 'OK'
+        @photos << result['result']['photos'][1]['photo_reference']
+      end
+    end
   end
 
   def edit

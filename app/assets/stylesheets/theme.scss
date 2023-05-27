@@ -1,13 +1,14 @@
 @media (min-width: 768px) {
 
   main{
-    padding: 30px;
+    padding: 10px 20px;
     display: flex;
     flex-direction: column;
   }
 
 a{
   text-decoration: none;
+  color: #335157;
 }
 
   #map{
@@ -98,6 +99,26 @@ a{
   }
 
   .place-list{
+    margin: 0px 10px;
+    height: 80vh;
     flex: 3;
+    overflow: auto;
+  }
+
+  .list-button{
+    display: inline;
+  }
+  .card {
+    height: 100%;
+  }
+
+  .card-body {
+    padding: 1px;
+    img{
+      max-width: 100%;
+    }
+    .card-text{
+      margin: 8px;
+    }
   }
 }

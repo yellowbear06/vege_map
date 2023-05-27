@@ -75,7 +75,7 @@
       <% photo = @photos.first %>
       <% photo_url = "https://maps.googleapis.com/maps/api/place/photo?photoreference=#{photo['photo_reference']}&sensor=false&maxheight=400&maxwidth=600&key=#{ENV['GOOGLE_MAPS_API_KEY']}" %>
       <%= image_tag(photo_url) %>
-      <div id="gmap" style="height:100%; width:100%;"></div> <!-- 地図を表示する領域 -->
+      <div id="gmap" style="height:100%; width:100%;"></div>
     </div>
   </div>
 <script>
