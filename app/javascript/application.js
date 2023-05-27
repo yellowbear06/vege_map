@@ -4,3 +4,4 @@ import "@rails/ujs";
 import "./controllers";
 import "./map.js";
 import "./avatar-uploader.js";
+import "./place-show-map.js"

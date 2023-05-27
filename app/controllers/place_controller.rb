@@ -7,6 +7,7 @@ class PlaceController < ApplicationController
   def index
     @q = Place.ransack(params[:q])
     @places = @q.result(distinct: true).order(created_at: :desc).limit(5)
+    gon.places = @places
     api_key = ENV['GOOGLE_MAPS_API_KEY']
     @photos = []
     @places.each do |place|
@@ -47,6 +48,7 @@ class PlaceController < ApplicationController
 
   def show
     @place = Place.find(params[:id])
+    gon.place = @place
     place_id = @place.google_place_id
     api_key = ENV['GOOGLE_MAPS_API_KEY']
 
@@ -56,7 +58,6 @@ class PlaceController < ApplicationController
     result = JSON.parse(response)
     if result['status'] == 'OK'
       place_data = result['result']
-      gon.place = place_data
       @phone = place_data['formatted_phone_number']
       @website = place_data['website']
       @photos = place_data['photos']

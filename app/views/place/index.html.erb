@@ -27,20 +27,5 @@
     </div>
   </div>
 </div>
-
-<!-- <script>
-  const places = gon.places // Rubyの@placesをJavaScriptの配列に変換
-  const api_key = gon.api_key // APIキー
-
-  // 各場所の写真を取得し、配列に追加する関数
-  places.forEach(function(place){
-    const url = "https://maps.googleapis.com/maps/api/place/details/json?place_id=${place.google_place_id}&key=${api_key}";
-    const image = document.createElement('img');
-    image.src = url; // 写真のURLをimg要素のsrc属性に設定
-    document.getElementById('photo-container').appendChild(image);
-  });
-  // 各場所の写真を非同期で取得する
-
-</script> -->
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&libraries=places&callback=initMap" async defer></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
