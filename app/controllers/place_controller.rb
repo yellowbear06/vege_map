@@ -54,7 +54,10 @@ class PlaceController < ApplicationController
       @categories = place_data['types']
       @status = place_data['business_status']
       if @status == 'OPERATIONAL'
-        @open_now = place_data['current_opening_hours']["open_now"] ? "営業中" : "閉店"
+        @open_now = place_data&.dig('current_opening_hours', 'open_now')
+        if @open_now
+          "営業中"
+        end
         @opening_hours = format_opening_hours(place_data['opening_hours'])
       end
     end
