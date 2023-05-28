@@ -22,6 +22,7 @@
               <tr>
                 <td><%= link_to list.place.name, place_path(list.place) %></td>
                 <td><%= list.place.address %></td>
+                <td><%= list.place.place_of_vegetarian_type.option + list.place.vegetarian.name %></td>
               </tr>
             <% end %>
           </tbody>

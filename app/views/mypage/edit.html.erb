@@ -5,13 +5,22 @@
       <h1><%= t('.title') %></h1>
       <%= form_with model: @user, url: mypage_path, local: true do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
-        <%= f.label :email %>
-        <%= f.email_field :email, class: 'form-control mb-3' %>
-
+        
         <%= f.label :name %>
         <%= f.text_field :name, class: 'form-control mb-3' %>
-
-
+        
+        <%= f.label :email %>
+        <%= f.email_field :email, class: 'form-control mb-3' %>
+        
+        <%= f.label :address %>
+        <%= f.text_field :address, class: 'form-control mb-3' %>
+        
+        <%= f.label :profile %>
+        <%= f.text_field :profile, class: 'form-control mb-3' %>
+        
+        <%= f.label :vegetarian_type_id %>
+        <%= f.collection_select :vegetarian_type_id, VegetarianType.all, :id, :name, { prompt: '選択する' }, class: 'form-control mb-3' %>
+        
         <div class="form-group mb-3">
           <div><%= f.label :avatar, class:'font-bold' %></div>
           <div><%= f.file_field :avatar, id: 'user_avatar', accept: 'image/*' %></div>

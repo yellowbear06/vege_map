@@ -20,6 +20,6 @@ class MypageController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :avatar, :avatar_cache)
+    params.require(:user).permit(:name, :email, :vegetarian_type_id, :address, :profile, :avatar, :avatar_cache)
   end
 end

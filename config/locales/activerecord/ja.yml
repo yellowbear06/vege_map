@@ -12,6 +12,7 @@ ja:
         email: 'メールアドレス'
         profile: 'プロフィール'
         address: '住んでいる県'
+        vegetarian_type_id: 'ベジタリアンの種類'
         avatar: 'アバター'
         role: '権限'
         password: 'パスワード'

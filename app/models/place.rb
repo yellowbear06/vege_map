@@ -3,6 +3,8 @@ class Place < ApplicationRecord
 
   has_many :list_places
   has_many :listing, through: :list_places, source: :user_list
+  has_one :place_of_vegetarian_type
+  has_one :vegetarian, through: :place_of_vegetarian_type, source: :vegetarian_type
 
   def fetch_place_id
     api_key = ENV['GOOGLE_MAPS_API_KEY']
