@@ -13,7 +13,7 @@ document.addEventListener('turbo:load', function() {
         center: {lat: 35.676192, lng: 139.750311},
         zoom: 12
         });
-      if (places !== null){
+      if (places){
         for (let i = 0; i < places.length; i++) {
           geocoder.geocode( { 'address': places[i].address}, function(results, status) {
             if (status == 'OK' && results[0]) {
@@ -33,7 +33,8 @@ document.addEventListener('turbo:load', function() {
                     currentInfoWindow.close();   // 吹き出しが表示されていた場合その吹き出しを閉じる
                   }
                   infoWindow[i].open(map, marker[i]);   // 吹き出しを開く
-
+            
+                  // 開いた吹き出しを変数に代入して次回別のマーカーをクリックした際に変数に格納されている吹き出しを閉じる
                   currentInfoWindow = infoWindow[i];
                 });
             }else{ 
@@ -47,3 +48,4 @@ document.addEventListener('turbo:load', function() {
     window.initMap = initMap;
   };
 });
+

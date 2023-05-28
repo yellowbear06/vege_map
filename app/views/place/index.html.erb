@@ -3,6 +3,7 @@
   <div class="place-map">
     <div id="map"></div> <!-- 地図を表示する領域 -->
   </div>
+  <%= @results %>
   <div class="place-list">
     <div class="row row-cols-1 row-cols-md-2 g-4">
       <% @places.each_with_index do |place, index| %>

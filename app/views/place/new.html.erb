@@ -1,0 +1,140 @@
+<input id="pac-input" class="controls" type="text" placeholder="Search Box"/>
+<div id="target"></div>
+
+<style>
+  #header {
+    background-color: darkblue;
+    padding: 3px;
+    width: 1195px;
+      font-family: Meriyo UI;
+      font-size: 14px;
+    color: white;
+  }
+  #target {
+    width: 1200px;
+    height: 700px;
+  }
+</style>
+
+<script>
+  let map
+  function initAutocomplete() {
+  map = new google.maps.Map(document.getElementById("target"), {
+    center: {lat: 35.676192, lng: 139.750311},
+    zoom: 12,
+    mapTypeId: "roadmap",
+  });
+  // Create the search box and link it to the UI element.
+  let input = document.getElementById("pac-input");
+  let searchBox = new google.maps.places.SearchBox(input);
+
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+  // Bias the SearchBox results towards current map's viewport.
+  map.addListener("bounds_changed", () => {
+    searchBox.setBounds(map.getBounds());
+  });
+
+  let markers = [];
+
+  searchBox.addListener("places_changed", () => {
+    const places = searchBox.getPlaces();
+
+    if (places.length == 0) {
+      return;
+    }
+
+    const googlePlaceIds = gon.places.map(place => place.google_place_id);
+
+    // Clear out the old markers.
+    markers.forEach((marker) => {
+      marker.setMap(null);
+    });
+    markers = [];
+
+    // For each place, get the icon, name and location.
+    const bounds = new google.maps.LatLngBounds();
+
+    places.forEach((place) => {
+      if (!place.geometry || !place.geometry.location) {
+        console.log("Returned place contains no geometry");
+        return;
+      }
+
+      let foundId;
+
+      Object.values(gon.places).forEach(item => {
+          if (item.google_place_id === place.place_id) {
+            foundId = String(item.id)
+            return; // 一致するものが見つかったらループを終了
+          }
+        });
+
+      const icon = {
+        url: place.icon,
+        size: new google.maps.Size(71, 71),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(17, 34),
+        scaledSize: new google.maps.Size(25, 25),
+      };
+
+      // Create a marker for each place.
+      const marker = new google.maps.Marker({
+        map,
+        icon,
+        title: place.name,
+        position: place.geometry.location,
+      });
+
+      markers.push(marker);
+
+      let content
+      let newPlace
+
+      if(foundId){
+        content = `<a href=/place/${foundId}>${place.name}</a>`;
+      }else{
+        let newAddress
+        const regex = /^(日本、〒\d{3}-\d{4}) (.+)$/;
+        const match = place.formatted_address.match(regex);
+
+        if (match) {
+          newAddress = match[2];
+        } else {
+          newAddress = place.formatted_address
+        }
+
+        content = `
+          <form action="/place" method="post" >
+            <h3>${place.name}</h3>
+            <p>${newAddress}</p>
+            <input type="hidden" name="place[name]]" value="${place.name}">
+            <input type="hidden" name="place[address]" value="${newAddress}">
+            <input type="hidden" name="place[google_place_id]" value="${place.place_id}">
+            <input type="submit" value="Submit">
+          </form>
+        `;
+      };
+      
+      marker.addListener("click", () => {
+        infoWindow = new google.maps.InfoWindow({
+          content: content
+        });
+        infoWindow.open(map, marker);
+      });
+                
+      if (place.geometry.viewport) {
+        // Only geocodes have viewport.
+        bounds.union(place.geometry.viewport);
+      } else {
+        bounds.extend(place.geometry.location);
+      }
+    });
+    map.fitBounds(bounds);
+  });
+}
+
+window.initAutocomplete = initAutocomplete;
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initAutocomplete&libraries=places&v=weekly" async defer></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>

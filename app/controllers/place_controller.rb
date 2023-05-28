@@ -2,6 +2,7 @@ class PlaceController < ApplicationController
   include PlaceHelper
   require 'net/http'
   require 'json'
+  require 'uri'
   skip_before_action :require_login
 
   def index
@@ -20,6 +21,21 @@ class PlaceController < ApplicationController
       end
     end
   end
+
+  def new
+    gon.places = Place.pluck(:google_place_id, :id).map { |google_place_id, id| { google_place_id: google_place_id, id: id } }
+  end
+
+  def create
+    debugger
+    @place = Place.new(place_params)
+    if @place.save
+      redirect_to new_place_path
+    else
+      render :new
+    end
+  end
+
 
   def edit
     @place = Place.find(params[:id])
@@ -85,6 +101,6 @@ class PlaceController < ApplicationController
   private
 
   def place_params
-    params.require(:place).permit(:name, :map_url, :address, :latitude, :longitude)
+    params.require(:place).permit(:name, :address, :eng_name, :eng_address, :google_place_id)
   end
 end
