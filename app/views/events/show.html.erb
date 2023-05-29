@@ -1,0 +1,10 @@
+<h1><%= @event.name %></h1>
+<p><%= @event.description %></p>
+<p>開始日時: <%= formatted_datetime(@event.start_time) %></p>
+<p>終了日時: <%= formatted_datetime(@event.end_time) %></p>
+<% if @event.place %>
+  <p>場所: <%= link_to @event.place.name, place_path(@event.place) %></p>
+<% end %>
+<% if @event.event_url %>
+  <p>イベントURL: <%= link_to @event.event_url, @event.event_url %></p>
+<% end %>
