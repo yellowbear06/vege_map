@@ -24,6 +24,8 @@ ja:
   time:
     formats:
       default: '%Y/%m/%d %H:%M'
+      short: '%m/%d %H:%M'
+      time: '%H:%M'
   sessions:
     new:
       title: 'ログイン'
@@ -50,6 +52,9 @@ ja:
       opening_hours: '営業時間'
       website: 'Website'
       phone: 'TEL'
+  events:
+    create:
+      success: 'イベントを作成しました'
 
 
 

@@ -1,10 +1,20 @@
 <%= month_calendar events: @events do |date, events| %>
   <%= date.day %>
   <% events.each do |event| %>
-    <div>
-      <%= link_to event.name, event_path(event) %>
-      <br>
-      <%= formatted_datetime(event.start_time) %> - <%= formatted_datetime(event.end_time) %>
+    <div class="event-container">
+      <% start_date = event.start_time.to_date %>
+      <% end_date = event.end_time.to_date %>
+      <% date_range = start_date..end_date %>
+      <% is_start_date = date == start_date %>
+      <% is_end_date = date == end_date %>
+      
+      <% if date_range.include?(date) %>
+        <% arrow_class = is_start_date ? "arrow-start" : (is_end_date ? "arrow-end" : "arrow-mid") %>
+        <% if is_start_date %>
+          <%= link_to event.name, event_path(event), class: arrow_class %>
+          <%= l event.start_time, format: :time %>-<%= l event.end_time, format: :time %>
+        <% end %>
+      <% end %>
     </div>
   <% end %>
 <% end %>

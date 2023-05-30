@@ -3,4 +3,5 @@
   <%= link_to t('defaults.contact'), contact_path %>
   <%= link_to t('defaults.logout'), logout_path, data: { turbo_method: :delete }  %>
   <%= link_to t('defaults.mypage'), mypage_path(current_user) %>
+  <%= link_to t(Event.model_name.human), events_path %>
 </div>

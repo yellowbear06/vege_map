@@ -19,9 +19,10 @@ class EventsController < ApplicationController
   def create
     @event = current_user.events.build(event_params)
     if @event.save
+      redirect_back_or_to top_path, success: t('.success')
       redirect_to events_path
     else
-      render :index
+      render :new, status: :unprocessable_entity
     end
   end
 
