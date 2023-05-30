@@ -53,6 +53,9 @@ ja:
       website: 'Website'
       phone: 'TEL'
   events:
+    index:
+    new:
+      new-event: '新規イベント作成'
     create:
       success: 'イベントを作成しました'
 

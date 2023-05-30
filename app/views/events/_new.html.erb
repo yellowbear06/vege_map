@@ -1,0 +1,48 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#NewEvent">
+  <%= t('.new-event') %>
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="NewEvent" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="ModalLabel"><%= t('.new-event') %></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div id="EventBody" class="modal-body">
+        <%= form_with model: event, local: true do |f| %>
+          <div class="name">
+            <%= f.label :name %>
+            <%= f.text_field :name %>
+          </div>
+          <div class="place_id">
+            <%= f.label :place_id %>
+            <%= f.number_field :place_id %>
+          </div>
+          <div class="time">
+            <%= f.label :start_time %>
+            <%= f.datetime_select :start_time %>
+          </div>
+          <div class="time">
+            <%= f.label :end_time %>
+            <%= f.datetime_select :end_time %>
+          </div>
+          <div class="content">
+            <%= f.label :description %>
+            <%= f.text_field :description %>
+          </div>
+          <div class="url">
+            <%= f.label :event_url %>
+            <%= f.text_field :event_url %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+            <%= f.submit class:"btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

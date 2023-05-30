@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   def index
     @events = Event.all
+    @event = current_user.events.new
   end
 
   def show
@@ -19,15 +20,15 @@ class EventsController < ApplicationController
   def create
     @event = current_user.events.build(event_params)
     if @event.save
-      redirect_back_or_to top_path, success: t('.success')
-      redirect_to events_path
+      redirect_to events_path, success: t('.success')
     else
-      render :new, status: :unprocessable_entity
+      respond_to do |format|
+        format.turbo_stream {render :new, locals: { event: @event}}
+      end
     end
   end
 
   def new
-    @event = current_user.events.new
   end
 
   private

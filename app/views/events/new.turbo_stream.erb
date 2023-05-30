@@ -1,0 +1,4 @@
+<%= turbo_stream.remove "error_messages" %>
+<%= turbo_stream.prepend "EventBody" do %>
+  <%= render 'shared/error_messages', object: event %>
+<% end %>
