@@ -1,19 +1,25 @@
 class EventsController < ApplicationController
   def index
     @events = Event.all
-    @event = current_user.events.new
+    @new_event = current_user.events.new
   end
 
   def show
-    @event = Event.find(params[:id])
   end
   
   def edit
     @event = current_user.events.find(params[:id])
+    render :edit, locals: { event: @event}, formats: :turbo_stream
+  end
+
+  def update
+    @event = current_user.events.find(params[:id])
     if @event.update(event_params)
-      redirect_to events_path
+      redirect_to events_path, success: t('.success')
     else
-      render :edit
+      respond_to do |format|
+        format.turbo_stream {render :errors, locals: { event: @event}, status: :unprocessable_entity}
+      end
     end
   end
 
@@ -23,12 +29,15 @@ class EventsController < ApplicationController
       redirect_to events_path, success: t('.success')
     else
       respond_to do |format|
-        format.turbo_stream {render :new, locals: { event: @event}}
+        format.turbo_stream {render :errors, locals: { event: @event}, status: :unprocessable_entity}
       end
     end
   end
 
-  def new
+  def destroy
+    @event = current_user.events.find(params[:id])
+    @event.destroy
+    redirect_to events_path, status: :see_other
   end
 
   private

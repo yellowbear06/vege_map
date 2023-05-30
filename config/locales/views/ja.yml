@@ -56,8 +56,12 @@ ja:
     index:
     new:
       new-event: '新規イベント作成'
+    show:
+      show-event: 'イベント詳細'
     create:
       success: 'イベントを作成しました'
+    update:
+      success: 'イベントを更新しました'
 
 
 

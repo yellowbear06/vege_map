@@ -1,0 +1,3 @@
+<%= turbo_stream.append "EventBody-#{event.id}" do %>
+  <%= render 'form', event: event %>
+<% end %>

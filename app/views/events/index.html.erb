@@ -1,4 +1,4 @@
-<%= render 'new', event: @event %>
+<%= render 'new', event: @new_event %>
 <%= month_calendar events: @events do |date, events| %>
   <%= date.day %>
   <% events.each do |event| %>
@@ -10,10 +10,8 @@
       <% is_end_date = date == end_date %>
       
       <% if date_range.include?(date) %>
-        <% arrow_class = is_start_date ? "arrow-start" : (is_end_date ? "arrow-end" : "arrow-mid") %>
         <% if is_start_date %>
-          <%= link_to event.name, event_path(event), class: arrow_class %>
-          <%= l event.start_time, format: :time %>-<%= l event.end_time, format: :time %>
+          <%= render 'show', event: event %>
         <% end %>
       <% end %>
     </div>

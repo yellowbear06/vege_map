@@ -1,0 +1,30 @@
+<%= form_with model: event, class:"row g-3 align-items-center", local: true do |f| %>
+  <div class="col-auto">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="col-auto">
+    <%= f.label :place_id %>
+    <%= f.number_field :place_id %>
+  </div>
+  <div class="col-auto">
+    <%= f.label :start_time %>
+    <%= f.datetime_select :start_time %>
+  </div>
+  <div class="col-auto">
+    <%= f.label :end_time %>
+    <%= f.datetime_select :end_time %>
+  </div>
+  <div class="col-auto">
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+  </div>
+  <div class="col-auto">
+    <%= f.label :event_url %>
+    <%= f.text_field :event_url %>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+    <%= f.submit class:"btn btn-primary" %>
+  </div>
+<% end %>
