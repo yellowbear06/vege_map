@@ -9,7 +9,7 @@ class EventsController < ApplicationController
   
   def edit
     @event = current_user.events.find(params[:id])
-    render :edit, locals: { event: @event}, formats: :turbo_stream
+    render :edit, locals: { event: @event }, formats: :turbo_stream
   end
 
   def update
@@ -18,7 +18,7 @@ class EventsController < ApplicationController
       redirect_to events_path, success: t('.success')
     else
       respond_to do |format|
-        format.turbo_stream {render :errors, locals: { event: @event}, status: :unprocessable_entity}
+        format.turbo_stream {render :edit, locals: { event: @event}, status: :unprocessable_entity }
       end
     end
   end

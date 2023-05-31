@@ -19,10 +19,14 @@
 </div>
 
 <script>
-  const newEventButton = document.getElementById('new-event-button');
-  
-  newEventButton.addEventListener('click', () => {
-    const error = document.getElementById('error_messages');
-    error.style.display = 'none';
+  document.addEventListener('DOMContentLoaded', () => {
+    let newEventButton = document.getElementById('new-event-button');
+    
+    newEventButton.addEventListener('click', () => {
+      let error = document.getElementById('error_messages');
+      if(error){
+        error.style.display = 'none';
+      }
+    });
   });
 </script>

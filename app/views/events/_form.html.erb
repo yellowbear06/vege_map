@@ -9,22 +9,19 @@
   </div>
   <div class="col-auto">
     <%= f.label :start_time %>
-    <%= f.datetime_select :start_time %>
+    <%= f.datetime_select :start_time, minute_step: 10, default: { minute: 0 } %>
   </div>
   <div class="col-auto">
     <%= f.label :end_time %>
-    <%= f.datetime_select :end_time %>
+    <%= f.datetime_select :end_time, minute_step: 10, default: { minute: 0 } %>
   </div>
   <div class="col-auto">
     <%= f.label :description %>
-    <%= f.text_field :description %>
+    <%= f.text_area :description, cols:"50"%>
   </div>
   <div class="col-auto">
     <%= f.label :event_url %>
-    <%= f.text_field :event_url %>
+    <%= f.text_area :event_url, cols:"50" %>
   </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
-    <%= f.submit class:"btn btn-primary" %>
-  </div>
+    <%= f.submit class:"btn btn-secondary" %>
 <% end %>

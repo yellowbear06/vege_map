@@ -1,27 +1,19 @@
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#ShowEvent-<%= event.id %>">
-  <%= event.name %>
-  <%= l event.start_time, format: :time %>-<%= l event.end_time, format: :time %>
-</button>
-
-<!-- Modal -->
 <div class="modal fade" id="ShowEvent-<%= event.id %>" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="ModalLabel"><%= t('.show-event') %></h1>
+        <h1 class="modal-title fs-5" id="ModalLabel"><%= event.name %></h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div id="EventBody-<%= event.id %>" class="modal-body">
-        <h1><%= event.name %></h1>
         <p><%= event.description %></p>
         <p>開始日時: <%= l event.start_time, format: :default %></p>
         <p>終了日時: <%= l event.end_time, format: :default %></p>
         <% if event.place %>
           <p>場所: <%= link_to event.place.name, place_path(event.place) %></p>
         <% end %>
-        <% if event.event_url %>
-          <p>イベントURL: <%= link_to event.event_url, event.event_url %></p>
+        <% if event.event_url.present? %>
+          <p>イベントURL: <%= link_to event.event_url, event.event_url, style: 'word-break: break-all;' %></p>
         <% end %>
         <%= link_to edit_event_path(event) do %>
           <i class="bi bi-pencil"></i><%= t('defaults.edit') %>&emsp;
@@ -33,3 +25,23 @@
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    let showButtons = document.querySelectorAll('[id^="Show-"]');
+
+    showButtons.forEach((button) => {
+      button.addEventListener('click', (event) => {
+        let eventId = event.currentTarget.id.split('-')[1];
+        let editBody = document.querySelector(`#edit-${eventId}`)
+        let error = document.getElementById('error_messages');
+        if(error){
+          error.style.display = 'none';
+        }
+        if(editBody){
+          editBody.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>

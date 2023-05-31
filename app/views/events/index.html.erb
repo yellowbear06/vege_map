@@ -11,6 +11,14 @@
       
       <% if date_range.include?(date) %>
         <% if is_start_date %>
+          <button type="button" id="Show-<%= event.id %>" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#ShowEvent-<%= event.id %>">
+            <%= event.name %><br>
+            <% if is_end_date %>
+              <%= l event.start_time, format: :time %>〜<%= l event.end_time, format: :time %>
+            <% else %>
+              <%= l event.start_time, format: :time %><br>〜<%= l event.end_time, format: :short %>
+            <% end %>
+          </button>
           <%= render 'show', event: event %>
         <% end %>
       <% end %>

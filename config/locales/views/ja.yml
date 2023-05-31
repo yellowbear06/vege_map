@@ -10,7 +10,7 @@ ja:
     show: '詳細'
     edit: '編集'
     delete: '削除'
-    update: '更新'
+    update: '更新する'
     cancel: 'キャンセル'
     message:
       require_login: 'ログインしてください'
@@ -24,7 +24,7 @@ ja:
   time:
     formats:
       default: '%Y/%m/%d %H:%M'
-      short: '%m/%d %H:%M'
+      short: '%-m/%d %H:%M'
       time: '%H:%M'
   sessions:
     new:
@@ -46,6 +46,9 @@ ja:
       title: 'マイページ'
     edit:
       title: 'ユーザー情報編集'
+  user_lists:
+    index:
+      add-list: '＋リスト追加'
   place:
     show:
       address: '住所'
