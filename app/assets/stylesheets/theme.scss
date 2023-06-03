@@ -1,9 +1,12 @@
 
-  main{
-    padding: 10px 20px;
-    display: flex;
-    flex-direction: column;
-  }
+main{
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+}
+ul{
+  list-style: none;
+}
 
 a{
   text-decoration: none;
@@ -17,7 +20,6 @@ a{
   .top-title{
     left: 10%;
     top: 40%;
-
     font-family: 'Mukta Vaani';
     font-style: normal;
     font-weight: 400;
@@ -126,3 +128,29 @@ a{
     width: 300px;
     height: 40px;
   }
+
+  //footer
+  footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem;
+    border-top: 1px solid #e5e7eb;
+    color: #999;
+  }
+
+footer a{
+  color: #999;
+}
+
+@media (min-width: 768px) {
+  .footer {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .md-flex {
+    display: flex;
+  }
+}
