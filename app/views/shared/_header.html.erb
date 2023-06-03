@@ -1,5 +1,7 @@
 <div class="topnav justify-content-end">
   <%= link_to t('defaults.home'), top_path %>
+  <%= link_to t(Place.model_name.human), place_index_path %>
+  <%= link_to t('defaults.new_place'), new_place_path %>
   <%= link_to t(Event.model_name.human), events_path %>
   <%= link_to t('defaults.mypage'), mypage_path(current_user) %>
 </div>

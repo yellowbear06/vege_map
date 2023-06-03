@@ -6,8 +6,6 @@
     background-color: darkblue;
     padding: 3px;
     width: 1195px;
-      font-family: Meriyo UI;
-      font-size: 14px;
     color: white;
   }
   #target {
@@ -24,12 +22,12 @@
     zoom: 12,
     mapTypeId: "roadmap",
   });
-  // Create the search box and link it to the UI element.
+
   let input = document.getElementById("pac-input");
   let searchBox = new google.maps.places.SearchBox(input);
 
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-  // Bias the SearchBox results towards current map's viewport.
+
   map.addListener("bounds_changed", () => {
     searchBox.setBounds(map.getBounds());
   });
@@ -89,7 +87,7 @@
 
       let content
       let newPlace
-
+      let place_id = place["place_id"]
       if(foundId){
         content = `<a href=/place/${foundId}>${place.name}</a>`;
       }else{
@@ -104,13 +102,15 @@
         }
 
         content = `
-          <form action="/place" method="post" >
+          <a href="https://www.google.com/maps/place/?q=place_id:${place_id}" target="_blank">
             <h3>${place.name}</h3>
             <p>${newAddress}</p>
+          </a>
+          <form action="/place" method="post">
             <input type="hidden" name="place[name]]" value="${place.name}">
             <input type="hidden" name="place[address]" value="${newAddress}">
             <input type="hidden" name="place[google_place_id]" value="${place.place_id}">
-            <input type="submit" value="Submit">
+            <input type="submit" class="btn btn-secondary" value="このお店を新規登録する">
           </form>
         `;
       };

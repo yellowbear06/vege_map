@@ -27,7 +27,6 @@ class PlaceController < ApplicationController
   end
 
   def create
-    debugger
     @place = Place.new(place_params)
     if @place.save
       redirect_to new_place_path
@@ -74,6 +73,7 @@ class PlaceController < ApplicationController
     result = JSON.parse(response)
     if result['status'] == 'OK'
       place_data = result['result']
+      gon.geometry = place_data["geometry"]["location"]
       @phone = place_data['formatted_phone_number']
       @website = place_data['website']
       @photos = place_data['photos']

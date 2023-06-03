@@ -4,19 +4,16 @@ document.addEventListener('turbo:load', function() {
   if(document.getElementById('gmap') !== null){
     function initMap() {
       let address = gon.place.address; 
-      let geocoder = new google.maps.Geocoder();
       
-      geocoder.geocode({ address: address }, function(results, status){
-        if (status === 'OK' && results[0]){  
           //マップのインスタンスを変数に代入
             map = new google.maps.Map(document.getElementById('gmap'), {  
-              center: results[0].geometry.location,
+              center: gon.geometry,
               zoom: 14
             });
 
           //マーカーの生成
             let marker = new google.maps.Marker({
-              position: results[0].geometry.location,
+              position: gon.geometry,
               map: map
             });
           
@@ -36,12 +33,6 @@ document.addEventListener('turbo:load', function() {
           marker.addListener('click', function(){
               infoWindow.open(map, marker);
             });
-          
-        }else{ 
-          alert('失敗しました。理由: ' + status);
-          return;
-        }
-      });
     }
     window.initMap = initMap;
   };
