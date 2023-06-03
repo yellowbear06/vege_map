@@ -1,18 +1,22 @@
-  <% @user_lists.each do |list| %>
-    <%= form_with model:list, class:"row g-3 align-items-center" do |f| %>
-      <div class="col-auto">
-        <%= f.label :list_name %>
-        <%= f.text_field :list_name, class: 'form-control mb-3' %>
-      </div>
-      <div class="col-auto">
-        <%= f.label :description %>
-        <%= f.text_field :description, class: 'form-control mb-3' %>
-      </div>
-      <div class="col-auto">
-        <%= f.submit t('defaults.update'), class: 'btn btn-outline-secondary' %>
-        <%= link_to user_list_path(list), data: { turbo_method: :delete, turbo_confirm: t('defaults.message.delete_confirm')} do %>
-          <i class="bi bi-trash"></i>
+<div class="container pt-3">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <% @user_lists.each do |list| %>
+        <%= form_with model:list, class:"row g-3 align-items-center" do |f| %>
+          <div class="col-auto">
+            <%= f.label :list_name %>
+            <%= f.text_field :list_name, class: 'form-control mb-3' %>
+          </div>
+          <div class="col-auto">
+            <%= f.label :description %>
+            <%= f.text_field :description, class: 'form-control mb-3' %>
+          </div>
+          <div class="col-auto">
+            <%= f.submit t('defaults.update'), class: 'btn btn-outline-secondary' %>
+            <%= link_to t('defaults.delete'), user_list_path(list), class: 'btn btn-outline-secondary', data: { turbo_method: :delete, turbo_confirm: t('defaults.message.delete_confirm')} %>
+          </div>
         <% end %>
-      </div>
-    <% end %>
-  <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -21,6 +21,7 @@
         <td><%= current_user.profile %></td>
       </tr>
     </table>
-    <%= link_to t('defaults.edit'), edit_mypage_path(current_user), class: 'btn btn-outline-secondary' %>
+    <%= link_to t('defaults.edit'), edit_mypage_path(current_user), class: 'btn btn-outline-secondary mb-2' %><br>
+    <%= link_to t('defaults.logout'), logout_path, class: 'btn btn-outline-secondary', data: { turbo_method: :delete, turbo_confirm: t('defaults.message.logout_confirm') }  %>
   </div>
-  <%= render 'user_lists/index' %>
+  <%= render 'user_lists/index', new_user_list:@new_user_list %>

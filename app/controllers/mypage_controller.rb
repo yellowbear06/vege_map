@@ -1,7 +1,9 @@
 class MypageController < ApplicationController
   before_action :set_user, only: %i[edit update]
 
-  def show; end
+  def show
+    @new_user_list = current_user.user_lists.new
+  end
 
   def edit; end
 

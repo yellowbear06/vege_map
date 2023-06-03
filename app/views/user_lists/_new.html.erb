@@ -1,7 +1,7 @@
 <div class="container pt-3">
   <div class="row">
     <div class="col-md-10 offset-md-1">
-        <%= form_with model: @user_list, class:"row g-3 align-items-center" do |f| %>
+        <%= form_with model: user_list, class:"row g-3 align-items-center" do |f| %>
           <%= render 'shared/error_messages', object: f.object %>
           <div class="col-auto">
             <%= f.label :list_name %>
@@ -12,7 +12,7 @@
             <%= f.text_field :description, class: 'form-control mb-3' %>
           </div>
           <div class="col-auto">
-            <%= f.submit t('defaults.create'), class: 'btn btn-primary' %>
+            <%= f.submit t('defaults.create'), class: 'btn btn-secondary' %>
           </div>
         <% end %>
     </div>

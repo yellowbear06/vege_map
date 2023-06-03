@@ -14,6 +14,7 @@ ja:
     cancel: 'キャンセル'
     message:
       require_login: 'ログインしてください'
+      logout_confirm: 'ログアウトしますか？'
       created: '%{item}を作成しました'
       not_created: '%{item}を作成できませんでした'
       updated: '%{item}を更新しました'
@@ -49,6 +50,7 @@ ja:
   user_lists:
     index:
       add-list: '＋リスト追加'
+      edit-list: '＋リスト編集'
   place:
     show:
       address: '住所'

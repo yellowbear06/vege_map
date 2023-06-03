@@ -30,7 +30,7 @@ ja:
         event_url: 'イベントURL'
         start_time: '開始時刻'
         end_time: '終了時刻'
-        status: 'ステータス'
+        status: '公開設定'
       list_place:
         user_list_id: 'ユーザーリストID'
         place_id: '場所ID'
@@ -57,5 +57,11 @@ ja:
       role:
         general: '一般'
         admin: '管理者'
-
-
+    place_of_vegetarian_type:
+      option:
+        entirely: 'すべて'
+        partly: '一部'
+    event:
+      status:
+        private_event: '非公開'
+        public_event: '公開する'

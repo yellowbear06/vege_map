@@ -23,17 +23,8 @@
             <td><b><%= @phone %></b></td>
           </tr>
           <tr>
-            <th colspan="2"><b>Links</b></th>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="blank-cell"></td>
-            <th>instagram</th>
-            <td><b>4%</b></td>
-          </tr>
-          <tr>
             <td colspan="2"><%= t(VegetarianType.human_attribute_name(:name)) %></td>
-            <td><%= @place.category %></td>
+            <td><%= vege_option(@place.place_of_vegetarian_type.option) + @place.vegetarian.name %></td>
           </tr>
           <tr class="thick-end">
             <th colspan="2"><b>料理の種類</b></th>

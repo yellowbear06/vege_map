@@ -23,5 +23,9 @@
     <%= f.label :event_url %>
     <%= f.text_area :event_url, cols:"50" %>
   </div>
+  <div class="col-auto">
+    <%= f.label :status %>
+    <%= f.select :status, Event.statuses.map { |key, value| [t("enums.event.status.#{key}"), key] }, {} %>
+  </div>
     <%= f.submit class:"btn btn-secondary" %>
 <% end %>

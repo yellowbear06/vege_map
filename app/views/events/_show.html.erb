@@ -15,6 +15,7 @@
         <% if event.event_url.present? %>
           <p>イベントURL: <%= link_to event.event_url, event.event_url, style: 'word-break: break-all;' %></p>
         <% end %>
+        <p>公開設定: <%= event_status(event.status) %></p>
         <%= link_to edit_event_path(event) do %>
           <i class="bi bi-pencil"></i><%= t('defaults.edit') %>&emsp;
         <% end %>

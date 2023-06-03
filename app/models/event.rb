@@ -7,7 +7,7 @@ class Event < ApplicationRecord
   validates :start_time, presence: true
   validates :status, presence: true
   validate :start_time_before_end_time
-  enum status: { draft_event: 0, private_event: 1, public_event: 2, private_done: 3, public_done: 4 }
+  enum status: { private_event: 0, public_event: 1 }
 
   def start_time_before_end_time
     if start_time > end_time
