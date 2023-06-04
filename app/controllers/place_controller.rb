@@ -37,6 +37,9 @@ class PlaceController < ApplicationController
   end
 
   def show
+    if logged_in?
+      @new_event = current_user.events.new
+    end
     @place = Place.find(params[:id])
     gon.place = @place
     place_id = @place.google_place_id

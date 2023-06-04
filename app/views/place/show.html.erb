@@ -55,17 +55,23 @@
           <% end %>
         </tfoot>
       </table>
-      <% if @place.events.present? %>
-        <% @place.events.each do |event| %>
-          <div class="card" style="height: auto;" >
-            <div class="card-body">
-              <h5 class="card-title"><%= event.name %></h5>
-              <p class="card-text"><%= event.description %>
-                <br>リンク:<%= link_to event.event_url, event.event_url %>
-              </p>
-              <p>Posted by <%= event.user.name %></p>
+      <% if logged_in? %>
+      <%= render 'events/new' %>
+        <% if @place.events.present? %>
+          <% @place.events.each do |event| %>
+            <div class="card p-2" style="height: auto;" >
+              <div class="card-body">
+                <h5 class="card-title"><%= link_to  event.name, events_index_path %></h5>
+                <p class="card-text"><%= event.description %>
+                <% if event.event_url.present? %>
+                  <br>リンク：<%= link_to event.event_url, event.event_url %>
+                <% end %>
+                  <br>日時：<%= l event.start_time, format: :default %>〜<%= l event.end_time, format: :default %>
+                </p>
+                <p>by <%= event.user.name %></p>
+              </div>
             </div>
-          </div>
+          <% end %>
         <% end %>
       <% end %>
     </section>

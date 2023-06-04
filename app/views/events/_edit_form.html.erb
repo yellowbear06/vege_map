@@ -1,12 +1,11 @@
-<%= form_with model: @new_event, class:"row g-3 align-items-center", local: true do |f| %>
+<%= form_with model: event, class:"row g-3 align-items-center", local: true do |f| %>
   <div class="col-auto">
     <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
   <div class="col-auto">
     <%= f.label :place_id %>
-    <%= f.hidden_field :place_id, value: @place.id %>
-    <%= @place.name %>
+    <%= event.place.name %>
   </div>
   <div class="col-auto">
     <%= f.label :start_time %>

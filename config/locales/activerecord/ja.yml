@@ -24,7 +24,7 @@ ja:
         name: 'ベジタリアンの種類'
       event:
         user_id: 'ユーザーID'
-        place_id: 'イベントの場所'
+        place_id: 'イベントの場所：'
         name: 'イベント名'
         description: 'どんなイベント？'
         event_url: 'イベントURL'
