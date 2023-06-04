@@ -1,7 +1,24 @@
-<div class="topnav justify-content-end">
-  <%= link_to t('defaults.home'), top_path %>
-  <%= link_to t(Place.model_name.human), place_index_path %>
-  <%= link_to t('defaults.new_place'), new_place_path %>
-  <%= link_to t(Event.model_name.human), events_path %>
-  <%= link_to t('defaults.mypage'), mypage_path(current_user) %>
+<div class="navbar navbar-expand-lg bg-body-tertiary topnav">
+  <div class="container-fluid">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <%= link_to t('defaults.home'), top_path %>
+      </li>
+      <li class="nav-item">
+        <%= link_to t(Place.model_name.human), place_index_path %>
+      </li>
+      <li class="nav-item">
+        <%= link_to t('defaults.new_place'), new_place_path %>
+      </li>
+      <li class="nav-item">
+        <%= link_to t(Event.model_name.human), events_path %>
+      </li>
+      <li class="nav-item">
+        <%= link_to t('defaults.mypage'), mypage_path(current_user) %>
+      </li>
+      <div class="d-flex mt-2 ms-5">
+        <%= render 'place/search_form', q: @q, url: place_index_path %>
+      </div>
+    </ul>
+  </div>
 </div>
