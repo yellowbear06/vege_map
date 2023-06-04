@@ -14,7 +14,11 @@
       </tr>
       <tr>
         <th scope="row"><%= t(VegetarianType.human_attribute_name(:name)) %></th>
-        <td><%= current_user.vegetarian_type.name %></td>
+        <% if current_user.vegetarian_type.present? %>
+          <td><%= current_user.vegetarian_type.name %></td>
+        <% else %>
+          <td>未選択</td>
+        <% end %>
       </tr>
       <tr>
         <th scope="row"><%= t(User.human_attribute_name(:profile)) %></th>

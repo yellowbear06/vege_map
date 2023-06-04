@@ -23,10 +23,12 @@
             <th colspan="2"><b><%= t('.phone') %></b></th>
             <td><b><%= @phone %></b></td>
           </tr>
-          <tr class="thick-end">
-            <td colspan="2"><%= t(VegetarianType.human_attribute_name(:name)) %></td>
-            <td><%= vege_option(@place.place_of_vegetarian_type.option) + @place.vegetarian.name %></td>
-          </tr>
+          <% if @place.place_of_vegetarian_type %>
+            <tr class="thick-end">
+              <td colspan="2"><%= t(VegetarianType.human_attribute_name(:name)) %></td>
+              <td><%= vege_option(@place.place_of_vegetarian_type.option) + @place.vegetarian.name %></td>
+            </tr>
+          <% end %>
         </tbody>
         <tfoot class="small-info">
           <% if @opening_hours %>
@@ -65,9 +67,11 @@
         <% end %>
       <% end %>
     </section>
-
+    <div class="place-content">
+      <% photo = @photos.first %>
+      <% photo_url = "https://maps.googleapis.com/maps/api/place/photo?photoreference=#{photo['photo_reference']}&sensor=false&maxheight=400&maxwidth=600&key=#{ENV['GOOGLE_MAPS_API_KEY']}" %>
+      <%= image_tag(photo_url) %>
+      <iframe width="100%" height="400" padding="10px" style="border:0" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed/v1/place?q=place_id:<%= @place.google_place_id %>&key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>"></iframe>
+    </div>
   </div>
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&libraries=places&callback=initMap" async defer></script>
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-
 
