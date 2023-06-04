@@ -27,12 +27,12 @@ class PlaceController < ApplicationController
   end
 
   def create
-    debugger
     @place = Place.new(place_params)
     if @place.save
-      redirect_to new_place_path
+      redirect_to place_path(@place), success: t('.success')
     else
-      render :new
+      flash.now[:danger] = t('.fail')
+      render :new, status: :unprocessable_entity
     end
   end
 

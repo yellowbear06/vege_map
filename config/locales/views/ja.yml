@@ -43,6 +43,9 @@ ja:
     create:
       success: 'ユーザー登録が完了しました'
       fail: 'ユーザー登録に失敗しました'
+  contact:
+    index:
+      title: 'お問い合わせ'
   mypage:
     show:
       title: 'マイページ'
@@ -53,13 +56,21 @@ ja:
       add-list: '＋リスト追加'
       edit-list: '＋リスト編集'
   place:
+    index:
+      title: 'お店一覧'
     show:
       address: '住所'
       opening_hours: '営業時間'
       website: 'Website'
       phone: 'TEL'
+    new:
+      title: '新規お店登録'
+    create:
+      success: '新規お店を登録しました'
+      fail: '新規お店の登録に失敗しました'
   events:
     index:
+      title: 'イベント'
     new:
       new-event: '新規イベント作成'
     show:

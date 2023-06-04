@@ -3,13 +3,15 @@
       <header class="place-info-header">
         <h1 class="place-info-title"><%= @place.name %></h1>
           <p><%= @place.eng_name %></p>
-        <%= render 'list_button', place: @place %>
+        <% if logged_in? %>
+          <%= render 'list_button', place: @place %>
+        <% end %>
       </header>
       <a href="https://www.google.com/maps/place/?q=place_id:<%= @place.google_place_id %>" target="_blank">Google Mapsで表示する</a>
       <table class="place-info-table">
         <tbody>
           <tr>
-            <th><b><%= t('.address') %></b></th>
+            <th colspan="2"><b><%= t('.address') %></b></th>
             <td colspan="2" id="address"><%= @place.address %></td>
           </tr>
           <tr class="thick-row">

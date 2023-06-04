@@ -2,7 +2,7 @@
 <div class="body-container d-flex">
   <div class="profile">
     <%= image_tag current_user.avatar.url, class: 'rounded-circle d-inline', size: '150x150' %>
-    <h1 class="d-inline"><%= current_user.name %></h1>
+    <h1 class="d-inline ms-2"><%= current_user.name %></h1>
     <table class="table">
       <tr>
         <th scope="row"><%= t(User.human_attribute_name(:email)) %></th>
