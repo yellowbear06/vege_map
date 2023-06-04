@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_28_131543) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_04_014224) do
   create_table "events", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "place_id"
@@ -55,6 +55,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_28_131543) do
     t.string "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "latitude"
+    t.float "longitude"
     t.index ["google_place_id"], name: "index_places_on_google_place_id", unique: true
   end
 
