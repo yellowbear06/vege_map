@@ -1,0 +1,6 @@
+<%= turbo_stream.prepend "EventBody-#{event.id}" do %>
+  <%= render 'shared/error_messages', object: event %>
+  <div id="edit-<%= event.id %>" class="modal-body" >
+    <%= render 'edit_form', event: event %>
+  </div>
+<% end %>

@@ -1,49 +1,65 @@
 document.addEventListener('turbo:load', function() {
-  let map;
-  let service;
-  let infowindow;
+  if (document.getElementById('map') !== null) {
+    function initMap() {
+      const places = gon.places;
+      const map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 35.676192, lng: 139.750311},
+        zoom: 12
+      });
 
-  function initMap() {
-    const sydney = new google.maps.LatLng(-33.867, 151.195);
-    
-    infowindow = new google.maps.InfoWindow();
-    map = new google.maps.Map(document.getElementById("map"), {
-      center: sydney,
-      zoom: 15,
-    });
-    
-    const request = {
-      query: "Museum of Contemporary Art Australia",
-      fields: ["name", "geometry"],
-    };
-    
-    service = new google.maps.places.PlacesService(map);
-    service.findPlaceFromQuery(request, (results, status) => {
-      if (status === google.maps.places.PlacesServiceStatus.OK && results) {
-        for (let i = 0; i < results.length; i++) {
-          createMarker(results[i]);
+      let currentInfoWindow = null;
+
+      const generateInfoWindowContent = (place) => {
+        let place_id = place.google_place_id;
+
+        return `
+          <a href="/place/${place.id}"><h3>${place.name}</h3></a>
+          <a href="https://www.google.com/maps/place/?q=place_id:${place_id}" target="_blank">google mapで開く</a>
+        `;
+      };
+
+      const openInfoWindow = (infoWindow, marker) => {
+        if (currentInfoWindow) {
+          currentInfoWindow.close();
         }
-        
-        map.setCenter(results[0].geometry.location);
+        infoWindow.open(map, marker);
+        currentInfoWindow = infoWindow;
+      };
+
+      if (Array.isArray(places)) {
+        places.forEach(place => {
+          const marker = new google.maps.Marker({
+            map: map,
+            position: {lat: place.latitude, lng: place.longitude}
+          });
+
+          const content = generateInfoWindowContent(place);
+
+          const infoWindow = new google.maps.InfoWindow({
+            content: content
+          });
+
+          marker.addListener('click', function() {
+            openInfoWindow(infoWindow, marker);
+          });
+        });
+      } else if (places) {
+        const marker = new google.maps.Marker({
+          map: map,
+          position: {lat: places.latitude, lng: places.longitude}
+        });
+
+        const content = generateInfoWindowContent(places);
+
+        const infoWindow = new google.maps.InfoWindow({
+          content: content
+        });
+
+        marker.addListener('click', function() {
+          openInfoWindow(infoWindow, marker);
+        });
       }
-      });
     }
-    
-    function createMarker(place) {
-      if (!place.geometry || !place.geometry.location) return;
-      
-      const marker = new google.maps.Marker({
-        map,
-        position: place.geometry.location,
-      });
-      
-      google.maps.event.addListener(marker, "click", () => {
-        infowindow.setContent(place.name || "");
-        infowindow.open(map);
-      });
-    }
-    
-  if (infowindow !== null) {
     window.initMap = initMap;
-  };
+  }
 });

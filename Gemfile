@@ -18,10 +18,10 @@ gem "puma", "~> 5.0"
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem "jsbundling-rails"
 
-# Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
+# Hotwire"s SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
 
-# Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
+# Hotwire"s modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 
 # Bundle and process CSS [https://github.com/rails/cssbundling-rails]
@@ -48,16 +48,19 @@ gem "bootsnap", require: false
 # Use Sass to process CSS
 gem "sassc-rails"
 
-gem 'bootstrap-sass', '~> 3.4.1'
-gem 'carrierwave'
+gem "bootstrap-sass", "~> 3.4.1"
+gem "carrierwave"
 gem "mini_magick"
-gem 'rails-i18n'
-gem 'jquery-rails'
-gem 'sorcery'
-gem 'geocoder'
-gem 'dotenv-rails'
-gem 'http'
+gem "rails-i18n"
+gem "jquery-rails"
+gem "sorcery"
+gem "geocoder"
+gem "dotenv-rails"
+gem "http"
 gem "gon"
+gem "ransack"
+gem 'pry-rails'
+gem 'simple_calendar'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
@@ -65,7 +68,7 @@ gem "gon"
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
-  gem 'faker'
+  gem "faker"
 end
 
 group :development do

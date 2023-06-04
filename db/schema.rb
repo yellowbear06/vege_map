@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_14_055529) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_04_014224) do
+  create_table "events", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "place_id"
+    t.string "name", null: false
+    t.text "description"
+    t.string "event_url"
+    t.datetime "start_time", null: false
+    t.datetime "end_time"
+    t.integer "status", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["place_id"], name: "index_events_on_place_id"
+    t.index ["user_id"], name: "index_events_on_user_id"
+  end
+
   create_table "list_places", force: :cascade do |t|
     t.integer "user_list_id", null: false
     t.integer "place_id", null: false
@@ -18,6 +33,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_14_055529) do
     t.datetime "updated_at", null: false
     t.index ["place_id"], name: "index_list_places_on_place_id"
     t.index ["user_list_id"], name: "index_list_places_on_user_list_id"
+  end
+
+  create_table "place_of_vegetarian_types", force: :cascade do |t|
+    t.integer "place_id", null: false
+    t.integer "option"
+    t.integer "vegetarian_type_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["place_id"], name: "index_place_of_vegetarian_types_on_place_id"
+    t.index ["vegetarian_type_id"], name: "index_place_of_vegetarian_types_on_vegetarian_type_id"
   end
 
   create_table "places", force: :cascade do |t|
@@ -30,6 +55,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_14_055529) do
     t.string "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "latitude"
+    t.float "longitude"
     t.index ["google_place_id"], name: "index_places_on_google_place_id", unique: true
   end
 
@@ -64,8 +91,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_14_055529) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "events", "places"
+  add_foreign_key "events", "users"
   add_foreign_key "list_places", "places"
   add_foreign_key "list_places", "user_lists"
+  add_foreign_key "place_of_vegetarian_types", "places"
+  add_foreign_key "place_of_vegetarian_types", "vegetarian_types"
   add_foreign_key "user_lists", "users"
   add_foreign_key "users", "vegetarian_types"
 end

@@ -2,6 +2,9 @@ ja:
   activerecord:
     models:
       user: 'ユーザー'
+      event: 'イベント'
+      place: 'お店'
+      user_list: 'ユーザーリスト'
     submit:
       create: '登録する'
       update: '更新する'
@@ -12,12 +15,39 @@ ja:
         email: 'メールアドレス'
         profile: 'プロフィール'
         address: '住んでいる県'
+        vegetarian_type_id: 'ベジタリアンの種類'
         avatar: 'アバター'
         role: '権限'
         password: 'パスワード'
         password_confirmation: 'パスワード確認'
       vegetarian_type:
         name: 'ベジタリアンの種類'
+      event:
+        user_id: 'ユーザーID'
+        place_id: 'イベントの場所：'
+        name: 'イベント名'
+        description: 'どんなイベント？'
+        event_url: 'イベントURL'
+        start_time: '開始時刻'
+        end_time: '終了時刻'
+        status: '公開設定'
+      list_place:
+        user_list_id: 'ユーザーリストID'
+        place_id: '場所ID'
+      place_of_vegetarian_type:
+        place_id: '場所ID'
+        option: 'オプション'
+      place:
+        name: '名前'
+        eng_name: '英語名'
+        address: '住所'
+        eng_address: '英語住所'
+        phone: '電話番号'
+        category: 'カテゴリー'
+      user_list:
+        user_id: 'ユーザーID'
+        list_name: 'リスト名'
+        description: '説明'
   attributes:
     id: 'ID'
     created_at: '作成日時'
@@ -27,5 +57,11 @@ ja:
       role:
         general: '一般'
         admin: '管理者'
-
-
+    place_of_vegetarian_type:
+      option:
+        entirely: 'すべて'
+        partly: '一部'
+    event:
+      status:
+        private_event: '非公開'
+        public_event: '公開する'

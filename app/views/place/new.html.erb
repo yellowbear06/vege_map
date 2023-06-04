@@ -1,0 +1,137 @@
+<% content_for(:title, t('.title')) %>
+<input id="pac-input" class="controls" type="text" placeholder="Search Box"/>
+<div id="target" style="width: 1200px; height:700px;" ></div>
+
+<script>
+  let map;
+  const markers = [];
+
+  function initAutocomplete() {
+    map = new google.maps.Map(document.getElementById("target"), {
+      center: { lat: 35.676192, lng: 139.750311 },
+      zoom: 12,
+      mapTypeId: "roadmap",
+    });
+
+    const input = document.getElementById("pac-input");
+    const searchBox = new google.maps.places.SearchBox(input);
+
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+    map.addListener("bounds_changed", () => {
+      searchBox.setBounds(map.getBounds());
+    });
+
+    searchBox.addListener("places_changed", () => {
+      const places = searchBox.getPlaces();
+
+      if (places.length === 0) {
+        return;
+      }
+
+      clearMarkers();
+
+      const bounds = new google.maps.LatLngBounds();
+
+      places.forEach((place) => {
+        if (!place.geometry || !place.geometry.location) {
+          console.log("Returned place contains no geometry");
+          return;
+        }
+
+        let foundId;
+
+        Object.values(gon.places).forEach((item) => {
+          if (item.google_place_id === place.place_id) {
+            foundId = String(item.id);
+            return;
+          }
+        });
+
+        const icon = {
+          url: place.icon,
+          size: new google.maps.Size(71, 71),
+          origin: new google.maps.Point(0, 0),
+          anchor: new google.maps.Point(17, 34),
+          scaledSize: new google.maps.Size(25, 25),
+        };
+
+        const marker = new google.maps.Marker({
+          map,
+          icon,
+          title: place.name,
+          position: place.geometry.location,
+        });
+
+        markers.push(marker);
+
+        const content = generateInfoWindowContent(place, foundId);
+        attachInfoWindow(marker, content);
+
+        if (place.geometry.viewport) {
+          bounds.union(place.geometry.viewport);
+        } else {
+          bounds.extend(place.geometry.location);
+        }
+      });
+
+      map.fitBounds(bounds);
+    });
+  }
+
+  function clearMarkers() {
+    markers.forEach((marker) => {
+      marker.setMap(null);
+    });
+    markers.length = 0;
+  }
+
+  function generateInfoWindowContent(place, foundId) {
+    let content;
+    const place_id = place.place_id;
+
+    if (foundId) {
+      content = `<a href="/place/${foundId}">${place.name}</a>`;
+    } else {
+      let newAddress;
+      const regex = /^(日本、〒\d{3}-\d{4}) (.+)$/;
+      const match = place.formatted_address.match(regex);
+
+      if (match) {
+        newAddress = match[2];
+      } else {
+        newAddress = place.formatted_address;
+      }
+
+      content = `
+        <a href="https://www.google.com/maps/place/?q=place_id:${place_id}" target="_blank">
+          <h3>${place.name}</h3>
+          <p>${newAddress}</p>
+        </a>
+        <form action="/place" method="post">
+          <input type="hidden" name="place[name]" value="${place.name}">
+          <input type="hidden" name="place[address]" value="${newAddress}">
+          <input type="hidden" name="place[google_place_id]" value="${place.place_id}">
+          <input type="submit" class="btn btn-secondary" value="このお店を新規登録する">
+        </form>
+      `;
+    }
+
+    return content;
+  }
+
+  function attachInfoWindow(marker, content) {
+    const infoWindow = new google.maps.InfoWindow({
+      content: content,
+    });
+
+    marker.addListener("click", () => {
+      infoWindow.open(map, marker);
+    });
+  }
+
+  window.initAutocomplete = initAutocomplete;
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initAutocomplete&libraries=places&v=weekly" async defer></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>

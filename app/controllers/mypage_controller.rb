@@ -1,7 +1,9 @@
 class MypageController < ApplicationController
   before_action :set_user, only: %i[edit update]
 
-  def show; end
+  def show
+    @new_user_list = current_user.user_lists.new
+  end
 
   def edit; end
 
@@ -20,6 +22,6 @@ class MypageController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :avatar, :avatar_cache)
+    params.require(:user).permit(:name, :email, :vegetarian_type_id, :address, :profile, :avatar, :avatar_cache)
   end
 end

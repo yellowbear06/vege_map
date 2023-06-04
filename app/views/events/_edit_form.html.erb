@@ -1,0 +1,31 @@
+<%= form_with model: event, class:"row g-3 align-items-center", local: true do |f| %>
+  <div class="col-auto">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="col-auto">
+    <%= f.label :place_id %>
+    <%= event.place.name %>
+  </div>
+  <div class="col-auto">
+    <%= f.label :start_time %>
+    <%= f.datetime_select :start_time, minute_step: 10, default: { minute: 0 } %>
+  </div>
+  <div class="col-auto">
+    <%= f.label :end_time %>
+    <%= f.datetime_select :end_time, minute_step: 10, default: { minute: 0 } %>
+  </div>
+  <div class="col-auto">
+    <%= f.label :description %>
+    <%= f.text_area :description, cols:"50"%>
+  </div>
+  <div class="col-auto">
+    <%= f.label :event_url %>
+    <%= f.text_area :event_url, cols:"50" %>
+  </div>
+  <div class="col-auto">
+    <%= f.label :status %>
+    <%= f.select :status, Event.statuses.map { |key, value| [t("enums.event.status.#{key}"), key] }, {} %>
+  </div>
+    <%= f.submit class:"btn btn-secondary" %>
+<% end %>

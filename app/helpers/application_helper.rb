@@ -11,4 +11,12 @@ module ApplicationHelper
   def active_if(path)
     path == controller_path ? 'active' : ''
   end
+
+  def vege_option(option)
+    t("enums.place_of_vegetarian_type.option.#{option}")
+  end
+
+  def event_status(status)
+    t("enums.event.status.#{status}")
+  end
 end

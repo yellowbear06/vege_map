@@ -1,0 +1,32 @@
+<!-- Button trigger modal -->
+<button type="button" id="new-event-button" class="btn btn-outline-secondary mb-2" data-bs-toggle="modal" data-bs-target="#NewEvent">
+  <%= t('.new-event') %>
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="NewEvent" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="ModalLabel"><%= t('.new-event') %></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div id="NewEventBody" class="modal-body">
+        <%= render 'events/form' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    let newEventButton = document.getElementById('new-event-button');
+    
+    newEventButton.addEventListener('click', () => {
+      let error = document.getElementById('error_messages');
+      if(error){
+        error.style.display = 'none';
+      }
+    });
+  });
+</script>

@@ -1,0 +1,33 @@
+<% content_for(:title, t('.title')) %>
+<div class="place-list-map">
+  <div class="place-map">
+    <div id="map"></div> <!-- 地図を表示する領域 -->
+  </div>
+  <div class="place-list">
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      <% @places.each_with_index do |place, index| %>
+        <div class="col">
+          <div class="card">
+            <%= link_to place_path(place) do %>
+              <div class="card-body">
+                <% photo_url = "https://maps.googleapis.com/maps/api/place/photo?photoreference=#{@photos[index]}&sensor=false&maxheight=600&maxwidth=600&key=#{ENV['GOOGLE_MAPS_API_KEY']}" %>
+                <%= image_tag(photo_url) %>
+                <div class="card-text">
+                  <h5><%= place.name %></h5>
+                  <p><%= place.eng_name %></p>
+                </div>
+              </div>
+            <% end %>
+            <% if logged_in? %>
+              <div class="list-button">
+                <%= render 'list_button', place: place %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&libraries=places&callback=initMap" async defer></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>

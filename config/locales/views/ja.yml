@@ -4,15 +4,18 @@ ja:
     login: 'ログイン'
     logout: 'ログアウト'
     register: '登録'
+    create: '作成'
     contact: 'お問い合わせ'
     mypage: 'マイページ'
+    new_place: '新規お店登録'
     show: '詳細'
     edit: '編集'
     delete: '削除'
-    update: '更新'
+    update: '更新する'
     cancel: 'キャンセル'
     message:
       require_login: 'ログインしてください'
+      logout_confirm: 'ログアウトしますか？'
       created: '%{item}を作成しました'
       not_created: '%{item}を作成できませんでした'
       updated: '%{item}を更新しました'
@@ -23,6 +26,8 @@ ja:
   time:
     formats:
       default: '%Y/%m/%d %H:%M'
+      short: '%-m/%d %H:%M'
+      time: '%H:%M'
   sessions:
     new:
       title: 'ログイン'
@@ -38,17 +43,42 @@ ja:
     create:
       success: 'ユーザー登録が完了しました'
       fail: 'ユーザー登録に失敗しました'
+  contact:
+    index:
+      title: 'お問い合わせ'
   mypage:
     show:
       title: 'マイページ'
     edit:
       title: 'ユーザー情報編集'
+  user_lists:
+    index:
+      add-list: '＋リスト追加'
+      edit-list: '＋リスト編集'
   place:
+    index:
+      title: 'お店一覧'
     show:
       address: '住所'
       opening_hours: '営業時間'
       website: 'Website'
       phone: 'TEL'
+    new:
+      title: '新規お店登録'
+    create:
+      success: '新規お店を登録しました'
+      fail: '新規お店の登録に失敗しました'
+  events:
+    index:
+      title: 'イベント'
+    new:
+      new-event: '新規イベント作成'
+    show:
+      show-event: 'イベント詳細'
+    create:
+      success: 'イベントを作成しました'
+    update:
+      success: 'イベントを更新しました'
 
 
 

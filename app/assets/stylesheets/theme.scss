@@ -1,25 +1,25 @@
-@media (min-width: 768px) {
 
-  main{
-    padding: 30px;
-  }
+main{
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+}
+ul{
+  list-style: none;
+}
 
-  .body-container{
-    display: flex;
-    flex-direction: column;
-  }
+a{
+  text-decoration: none;
+  color: #335157;
+}
 
   #map{
-    height: 1000px;
-    border: 2px solid black;
+    height: 80vh;
   }
 
   .top-title{
-    width: 337px;
-    height: 349px;
     left: 10%;
     top: 40%;
-
     font-family: 'Mukta Vaani';
     font-style: normal;
     font-weight: 400;
@@ -59,32 +59,41 @@
     width: 380px;
   }
 
+  /* Mylists */
   .mylists{
-    width: 700px;
-    margin: 20px 40px;
+    width: 950px;
+    margin: 20px;
   }
 
-  .place-name{
-    margin: 0px 10px 20px 10px;
-    font-family: sans-serif;
-    font-size: 35px;
+  .toggle-icon{
+    padding: 1px 3px;
   }
 
-  .place-details{
+  // place/new
+  .controls{
+    width: 300px;
+    height: 40px;
+  }
+
+  //footer
+  footer {
+    width: 100%;
+    padding: 1rem;
+    border-top: 1px solid #e5e7eb;
+    color: #999;
+  }
+
+footer a{
+  color: #999;
+}
+
+@media (min-width: 768px) {
+  .footer {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .md-flex {
     display: flex;
   }
-
-  .place-info{
-    flex: 2;
-  }
-  
-  .place-content{
-    flex: 3;
-    margin-left: 20px;
-
-    img{
-      margin: 0px 0px 30px 15px;
-    }
-  }
-
 }
