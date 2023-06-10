@@ -35,10 +35,6 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 /.env
-<<<<<<< HEAD
-=======
-
->>>>>>> feature/top_page
 /app/assets/builds/*
 !/app/assets/builds/.keep
 
