@@ -11,9 +11,12 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2023_06_04_014224) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "events", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "place_id"
+    t.bigint "user_id", null: false
+    t.bigint "place_id"
     t.string "name", null: false
     t.text "description"
     t.string "event_url"
@@ -27,8 +30,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_04_014224) do
   end
 
   create_table "list_places", force: :cascade do |t|
-    t.integer "user_list_id", null: false
-    t.integer "place_id", null: false
+    t.bigint "user_list_id", null: false
+    t.bigint "place_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["place_id"], name: "index_list_places_on_place_id"
@@ -36,9 +39,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_04_014224) do
   end
 
   create_table "place_of_vegetarian_types", force: :cascade do |t|
-    t.integer "place_id", null: false
+    t.bigint "place_id", null: false
     t.integer "option"
-    t.integer "vegetarian_type_id", null: false
+    t.bigint "vegetarian_type_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["place_id"], name: "index_place_of_vegetarian_types_on_place_id"
@@ -61,7 +64,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_04_014224) do
   end
 
   create_table "user_lists", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.string "list_name", null: false
     t.text "description"
     t.datetime "created_at", null: false
@@ -78,7 +81,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_04_014224) do
     t.integer "role", default: 0, null: false
     t.string "crypted_password"
     t.string "salt"
-    t.integer "vegetarian_type_id"
+    t.bigint "vegetarian_type_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
