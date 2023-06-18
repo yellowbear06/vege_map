@@ -11,23 +11,20 @@
       <table class="place-info-table">
         <tbody>
           <tr>
-            <th colspan="2"><b><%= t('.address') %></b></th>
-            <td colspan="2" id="address"><%= @place.address %></td>
-          </tr>
-          <tr class="thick-row">
-            <td colspan="3" class="small-info"><b><%= @place.eng_address %></b></td>
+            <th><b><%= t('.address') %></b></th>
+            <td id="address"><%= @place.address %></td>
           </tr>
           <tr>
-            <th colspan="2"><b><%= t('.website') %></b></th>
-            <td><b><%= link_to "website", @website %></b></td>
+            <th><b><%= t('.website') %></b></th>
+            <td><b><%= link_to @website, @website %></b></td>
           </tr>
           <tr>
-            <th colspan="2"><b><%= t('.phone') %></b></th>
+            <th><b><%= t('.phone') %></b></th>
             <td><b><%= @phone %></b></td>
           </tr>
           <% if @place.place_of_vegetarian_type %>
             <tr class="thick-end">
-              <td colspan="2"><%= t(VegetarianType.human_attribute_name(:name)) %></td>
+              <td><%= t(VegetarianType.human_attribute_name(:name)) %></td>
               <td><%= vege_option(@place.place_of_vegetarian_type.option) + @place.vegetarian.name %></td>
             </tr>
           <% end %>
@@ -35,20 +32,17 @@
         <tfoot class="small-info">
           <% if @opening_hours %>
             <tr>
-              <td class="blank-cell"></td>
               <th></th>
               <td><%= t('.opening_hours') %></td>
             </tr>
             <% @opening_hours.each do |hour| %>
             <tr>
-              <td class="blank-cell"></td>
               <th><b></b></th>
               <td><%= hour %></td>
             </tr>
             <% end %>
           <% else %>
             <tr>
-              <td class="blank-cell"></td>
               <th><b></b></th>
               <td><%= @status %></td>
             </tr>
@@ -61,7 +55,7 @@
           <% @place.events.each do |event| %>
             <div class="card p-2" style="height: auto;" >
               <div class="card-body">
-                <h5 class="card-title"><%= link_to  event.name, events_index_path %></h5>
+                <h5 class="card-title"><%= event.name %></h5>
                 <p class="card-text"><%= event.description %>
                 <% if event.event_url.present? %>
                   <br>リンク：<%= link_to event.event_url, event.event_url %>

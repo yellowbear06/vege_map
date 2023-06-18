@@ -20,17 +20,19 @@
   padding: 0 0 0.25rem 0;
   margin: 0 0 0.5rem 0;
 }
+
+table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+}
+
 .place-info-table {
   width: 100%;
-  thead tr {
-    th,
-    td {
-      width: 50%;
-      border: 0;
-    }
-  }
+  table-layout: fixed;
   th,
   td {
+    word-break: break-word;
     white-space: pre-wrap;
     font-weight: normal;
     text-align: left;
@@ -69,9 +71,6 @@ tfoot tr{
 }
 .thick-end {
   border-bottom: 10px solid black;
-}
-.thin-end {
-  border-bottom: 1px solid black;
 }
 
 .place-name{
