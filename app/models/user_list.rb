@@ -1,6 +1,6 @@
 class UserList < ApplicationRecord
   belongs_to :user
-  has_many :list_places
+  has_many :list_places, dependent: :destroy
   has_many :listing_places, through: :list_places, source: :place
 
   validates :list_name, presence: true, length: { maximum: 15 }

@@ -1,7 +1,7 @@
 class Place < ApplicationRecord
   require 'http'
 
-  has_many :list_places
+  has_many :list_places, dependent: :destroy
   has_many :listing, through: :list_places, source: :user_list
   has_one :place_of_vegetarian_type
   has_one :vegetarian, through: :place_of_vegetarian_type, source: :vegetarian_type

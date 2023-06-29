@@ -1,79 +1,79 @@
-  <div class="place-details">
-    <section class="place-info info-box">
-      <header class="place-info-header">
-        <h1 class="place-info-title"><%= @place.name %></h1>
-          <p><%= @place.eng_name %></p>
-        <% if logged_in? %>
-          <%= render 'list_button', place: @place %>
-        <% end %>
-      </header>
-      <a href="https://www.google.com/maps/place/?q=place_id:<%= @place.google_place_id %>" target="_blank">Google Mapsで表示する</a>
-      <table class="place-info-table">
-        <tbody>
-          <tr>
-            <th><b><%= t('.address') %></b></th>
-            <td id="address"><%= @place.address %></td>
-          </tr>
-          <tr>
-            <th><b><%= t('.website') %></b></th>
-            <td><b><%= link_to @website, @website %></b></td>
-          </tr>
-          <tr>
-            <th><b><%= t('.phone') %></b></th>
-            <td><b><%= @phone %></b></td>
-          </tr>
-          <% if @place.place_of_vegetarian_type %>
-            <tr class="thick-end">
-              <td><%= t(VegetarianType.human_attribute_name(:name)) %></td>
-              <td><%= vege_option(@place.place_of_vegetarian_type.option) + @place.vegetarian.name %></td>
-            </tr>
-          <% end %>
-        </tbody>
-        <tfoot class="small-info">
-          <% if @opening_hours %>
-            <tr>
-              <th></th>
-              <td><%= t('.opening_hours') %></td>
-            </tr>
-            <% @opening_hours.each do |hour| %>
-            <tr>
-              <th><b></b></th>
-              <td><%= hour %></td>
-            </tr>
-            <% end %>
-          <% else %>
-            <tr>
-              <th><b></b></th>
-              <td><%= @status %></td>
-            </tr>
-          <% end %>
-        </tfoot>
-      </table>
+<div class="place-details">
+  <section class="place-info info-box">
+    <header class="place-info-header">
+      <h1 class="place-info-title"><%= @place.name %></h1>
+        <p><%= @place.eng_name %></p>
       <% if logged_in? %>
-      <%= render 'events/new' %>
-        <% if @place.events.present? %>
-          <% @place.events.each do |event| %>
-            <div class="card p-2" style="height: auto;" >
-              <div class="card-body">
-                <h5 class="card-title"><%= event.name %></h5>
-                <p class="card-text"><%= event.description %>
-                <% if event.event_url.present? %>
-                  <br>リンク：<%= link_to event.event_url, event.event_url %>
-                <% end %>
-                  <br>日時：<%= l event.start_time, format: :default %>〜<%= l event.end_time, format: :default %>
-                </p>
-                <p>by <%= event.user.name %></p>
-              </div>
-            </div>
+        <%= render 'list_button', place: @place %>
+      <% end %>
+    </header>
+    <a href="https://www.google.com/maps/place/?q=place_id:<%= @place.google_place_id %>" target="_blank">Google Mapsで表示する</a>
+    <table class="place-info-table">
+      <tbody>
+        <tr>
+          <th><b><%= t('.address') %></b></th>
+          <td id="address"><%= @place.address %></td>
+        </tr>
+        <tr>
+          <th><b><%= t('.website') %></b></th>
+          <td><b><%= link_to @website, @website %></b></td>
+        </tr>
+        <tr>
+          <th><b><%= t('.phone') %></b></th>
+          <td><b><%= @phone %></b></td>
+        </tr>
+        <% if @place.place_of_vegetarian_type %>
+          <tr class="thick-end">
+            <td><%= t(VegetarianType.human_attribute_name(:name)) %></td>
+            <td><%= vege_option(@place.place_of_vegetarian_type.option) + @place.vegetarian.name %></td>
+          </tr>
+        <% end %>
+      </tbody>
+      <tfoot class="small-info">
+        <% if @opening_hours %>
+          <tr>
+            <th></th>
+            <td><%= t('.opening_hours') %></td>
+          </tr>
+          <% @opening_hours.each do |hour| %>
+          <tr>
+            <th><b></b></th>
+            <td><%= hour %></td>
+          </tr>
           <% end %>
+        <% else %>
+          <tr>
+            <th><b></b></th>
+            <td><%= @status %></td>
+          </tr>
+        <% end %>
+      </tfoot>
+    </table>
+    <% if logged_in? %>
+    <%= render 'events/new' %>
+      <% if @place.events.present? %>
+        <% @place.events.each do |event| %>
+          <div class="card p-2" style="height: auto;" >
+            <div class="card-body">
+              <h5 class="card-title"><%= event.name %></h5>
+              <p class="card-text"><%= event.description %>
+              <% if event.event_url.present? %>
+                <br>リンク：<%= link_to event.event_url, event.event_url %>
+              <% end %>
+                <br>日時：<%= l event.start_time, format: :default %>〜<%= l event.end_time, format: :default %>
+              </p>
+              <p>by <%= event.user.name %></p>
+            </div>
+          </div>
         <% end %>
       <% end %>
-    </section>
-    <div class="place-content">
-      <% photo = @photos.first %>
-      <% photo_url = "https://maps.googleapis.com/maps/api/place/photo?photoreference=#{photo['photo_reference']}&sensor=false&maxheight=400&maxwidth=600&key=#{ENV['GOOGLE_MAPS_API_KEY']}" %>
-      <%= image_tag(photo_url) %>
-      <iframe width="100%" height="400" padding="10px" style="border:0" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed/v1/place?q=place_id:<%= @place.google_place_id %>&key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>"></iframe>
-    </div>
+    <% end %>
+  </section>
+  <div class="place-content">
+    <% photo = @photos.first %>
+    <% photo_url = "https://maps.googleapis.com/maps/api/place/photo?photoreference=#{photo['photo_reference']}&sensor=false&maxheight=400&maxwidth=600&key=#{ENV['GOOGLE_MAPS_API_KEY']}" %>
+    <%= image_tag(photo_url) %>
+    <iframe width="100%" height="400" padding="10px" style="border:0" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed/v1/place?q=place_id:<%= @place.google_place_id %>&key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>"></iframe>
   </div>
+</div>
 
