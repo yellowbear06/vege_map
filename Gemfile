@@ -45,8 +45,6 @@ gem "bootsnap", require: false
 # Use Sass to process CSS
 gem "sassc-rails"
 
-gem 'bootstrap', '~> 5.0'
-gem "bootstrap-sass"
 gem "carrierwave"
 gem "mini_magick"
 gem "rails-i18n"
