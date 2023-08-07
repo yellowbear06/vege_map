@@ -253,6 +253,7 @@ GEM
       activerecord (>= 6.1.5)
       activesupport (>= 6.1.5)
       i18n
+    redis (4.8.1)
     regexp_parser (2.8.1)
     reline (0.3.7)
       io-console (~> 0.5)
@@ -351,6 +352,7 @@ DEPENDENCIES
   rails (~> 7.0.4, >= 7.0.4.3)
   rails-i18n
   ransack
+  redis (~> 4.0)
   sassc-rails
   selenium-webdriver
   simple_calendar
